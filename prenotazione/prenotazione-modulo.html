@@ -1,0 +1,100 @@
+<!-- AG Studio — Modulo Prenotazione | Squarespace 7.1 -->
+<div id="ag-booking" class="ag-booking">
+  <section class="ag-booking__choices" aria-labelledby="ag-booking-heading">
+    <h2 id="ag-booking-heading">Scegli il tuo percorso.</h2>
+    <p class="ag-booking__intro">Ogni sessione dura 60 minuti e si svolge online. Il prezzo è riferito al percorso completo.</p>
+    <div class="ag-booking__options" role="radiogroup" aria-label="Seleziona il percorso">
+      <label class="ag-booking__option"><input type="radio" name="ag-booking-service" value="focus" checked><span><strong>Sessione Focus · 110 €</strong><small>1 sessione di 60 minuti · per una necessità specifica</small></span></label>
+      <label class="ag-booking__option"><input type="radio" name="ag-booking-service" value="autonomia"><span><strong>Percorso Autonomia · 300 €</strong><small>3 sessioni di 60 minuti · entro 90 giorni dalla prima prenotazione</small></span></label>
+      <label class="ag-booking__option"><input type="radio" name="ag-booking-service" value="advanced"><span><strong>Percorso Advanced · 475 €</strong><small>5 sessioni di 60 minuti · entro 180 giorni dalla prima prenotazione</small></span></label>
+    </div>
+    <p class="ag-booking__hint">Seleziona una proposta per aggiornare il preventivo, poi consulta il calendario.</p>
+    <a class="ag-booking__cta" href="#ag-calendario">Prenota la consulenza <span aria-hidden="true">↗</span></a>
+  </section>
+  <aside class="ag-booking__summary" aria-label="Preventivo del percorso selezionato">
+    <span class="ag-booking__eyebrow">↗ IL TUO PERCORSO</span>
+    <h2 id="ag-booking-name">Sessione Focus</h2>
+    <p id="ag-booking-sub" class="ag-booking__sub">Consulenza individuale online</p>
+    <p class="ag-booking__price" id="ag-booking-price">110 €</p>
+    <p class="ag-booking__price-label">Prezzo del percorso</p>
+    <div class="ag-booking__installments">
+      <strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg> Paga anche a rate</strong>
+      <p>Puoi dilazionare il pagamento con PayPal, Klarna o Scalapay. Numero di rate, disponibilità e condizioni dipendono dal provider e sono mostrati al checkout.</p>
+    </div>
+    <div class="ag-booking__secure">
+      <strong><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Pagamenti sicuri</strong>
+      <div class="ag-booking__methods" aria-label="Metodi di pagamento visualizzati nel checkout">
+        <span>Carte</span><span>Apple Pay</span><span>Google Pay</span><span>Link</span><span>PayPal</span><span>Satispay</span><span>Klarna</span><span>Scalapay</span><span>Amazon Pay</span><span>SEPA</span>
+      </div>
+    </div>
+    <hr>
+    <ul id="ag-booking-benefits" class="ag-booking__benefits">
+      <li>1 sessione individuale da 60 minuti</li>
+      <li>Approfondimento su un obiettivo specifico</li>
+      <li>Consulenza online, pratica e mirata</li>
+    </ul>
+    <hr>
+    <p id="ag-booking-support" class="ag-booking__support">Dopo la prenotazione riceverai le indicazioni per completare il pagamento.</p>
+  </aside>
+</div>
+<style>
+#ag-booking{--ag-ink:#192925;--ag-green:#24473f;--ag-sage:#d6e5cb;--ag-muted:#596861;--ag-border:#cbd4cc;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1.58fr) minmax(300px,1fr);gap:22px;align-items:start;color:var(--ag-ink);font-family:inherit}
+#ag-booking *,#ag-booking *::before,#ag-booking *::after{box-sizing:border-box}
+#ag-booking .ag-booking__choices{background:#fff;border:1px solid var(--ag-border);border-radius:18px;padding:32px}
+#ag-booking h2{margin:0;font-family:inherit}
+#ag-booking .ag-booking__choices h2{font-size:clamp(24px,3vw,29px);font-weight:700;line-height:1.2;letter-spacing:-.04em}
+#ag-booking .ag-booking__intro{font-size:15px;color:var(--ag-muted);line-height:1.65;margin:9px 0 25px}
+#ag-booking .ag-booking__options{display:grid;gap:12px}
+#ag-booking .ag-booking__option{display:flex;align-items:center;gap:14px;cursor:pointer;border:1px solid #d8dfd8;border-radius:12px;padding:18px 17px;min-height:91px;background:#fff}
+#ag-booking .ag-booking__option:has(input:checked){border:2px solid var(--ag-green);padding:17px 16px;background:#f2f7ef}
+#ag-booking input[type=radio]{flex:none;accent-color:var(--ag-green);width:18px;height:18px;margin:0}
+#ag-booking .ag-booking__option strong{display:block;font-size:15px;line-height:1.4}
+#ag-booking .ag-booking__option small{display:block;font-size:12px;line-height:1.55;color:var(--ag-muted);margin-top:5px}
+#ag-booking .ag-booking__hint{font-size:12px;line-height:1.7;color:var(--ag-muted);margin:21px 0 0}
+#ag-booking .ag-booking__cta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px;padding:15px 20px;border-radius:8px;background:var(--ag-green);color:white;text-decoration:none;font-size:15px;font-weight:700}
+#ag-booking .ag-booking__cta:hover{background:var(--ag-ink)}
+#ag-booking .ag-booking__summary{background:var(--ag-ink);border-radius:18px;padding:32px;color:#fff;position:sticky;top:24px}
+#ag-booking .ag-booking__eyebrow{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--ag-sage)}
+#ag-booking .ag-booking__summary h2{font-size:clamp(27px,3vw,36px);font-weight:700;line-height:1.14;letter-spacing:-.045em;margin:19px 0 9px;color:#fff}
+#ag-booking .ag-booking__sub,#ag-booking .ag-booking__price-label,#ag-booking .ag-booking__support{color:#c6d5ca}
+#ag-booking .ag-booking__sub{font-size:14px;margin:0}
+#ag-booking .ag-booking__price{font-size:46px;font-weight:750;letter-spacing:-.055em;margin:24px 0 2px;line-height:1.1;color:white}
+#ag-booking .ag-booking__price-label{font-size:12px;margin:0}
+#ag-booking .ag-booking__installments,#ag-booking .ag-booking__secure{margin-top:16px;padding:13px 14px;border:1px solid #496157;border-radius:9px}
+#ag-booking .ag-booking__installments strong,#ag-booking .ag-booking__secure strong{display:flex;align-items:center;gap:9px;font-size:14px;line-height:1.35;color:#fff}
+#ag-booking svg{width:17px;height:17px;flex:none;color:var(--ag-sage)}
+#ag-booking .ag-booking__installments p{font-size:12px;line-height:1.65;color:#d6e5cb;margin:8px 0 0}
+#ag-booking .ag-booking__methods{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+#ag-booking .ag-booking__methods span{display:inline-flex;align-items:center;border-radius:20px;padding:3px 7px;background:#f5f3ee;color:#192925;font-size:10px;font-weight:700;line-height:1.4}
+#ag-booking hr{border:0;border-top:1px solid #456057;margin:24px 0}
+#ag-booking .ag-booking__benefits{list-style:none;padding:0;margin:0;display:grid;gap:13px}
+#ag-booking .ag-booking__benefits li{display:flex;gap:11px;font-size:14px;line-height:1.55;color:#e9f0ea}
+#ag-booking .ag-booking__benefits li::before{content:"✓";font-weight:700;color:var(--ag-sage)}
+#ag-booking .ag-booking__support{font-size:12px;line-height:1.7;margin:0}
+#ag-booking :focus-visible{outline:3px solid #caa46b;outline-offset:3px}
+@media(max-width:860px){#ag-booking{grid-template-columns:1fr}#ag-booking .ag-booking__summary{position:static}}
+@media(max-width:600px){#ag-booking .ag-booking__choices,#ag-booking .ag-booking__summary{padding:22px;border-radius:14px}#ag-booking .ag-booking__price{font-size:42px}#ag-booking .ag-booking__option{min-height:80px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script>
+(function(){
+  const root=document.getElementById('ag-booking');
+  if(!root || root.dataset.initialized==='true') return;
+  root.dataset.initialized='true';
+  const offers={
+    focus:{name:'Sessione Focus',sub:'Consulenza individuale online',price:'110 €',benefits:['1 sessione individuale da 60 minuti','Approfondimento su un obiettivo specifico','Consulenza online, pratica e mirata'],support:'Dopo la prenotazione riceverai le indicazioni per completare il pagamento.'},
+    autonomia:{name:'Percorso Autonomia',sub:'Tre incontri per acquisire autonomia',price:'300 €',benefits:['3 sessioni individuali da 60 minuti','Da utilizzare entro 90 giorni dalla prima prenotazione','WhatsApp per spostamenti di sessione e domande semplici'],support:'WhatsApp per comunicazioni organizzative e brevi chiarimenti che non richiedono operatività al PC fuori dalle lezioni.'},
+    advanced:{name:'Percorso Advanced',sub:'Un accompagnamento più approfondito',price:'475 €',benefits:['5 sessioni individuali da 60 minuti','Da utilizzare entro 180 giorni dalla prima prenotazione','WhatsApp per spostamenti di sessione e domande semplici'],support:'WhatsApp per comunicazioni organizzative e brevi chiarimenti che non richiedono operatività al PC fuori dalle lezioni.'}
+  };
+  function update(key){
+    const offer=offers[key];if(!offer)return;
+    root.querySelector('#ag-booking-name').textContent=offer.name;
+    root.querySelector('#ag-booking-sub').textContent=offer.sub;
+    root.querySelector('#ag-booking-price').textContent=offer.price;
+    root.querySelector('#ag-booking-support').textContent=offer.support;
+    root.querySelector('#ag-booking-benefits').replaceChildren(...offer.benefits.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
+  }
+  root.querySelectorAll('input[name="ag-booking-service"]').forEach(input=>input.addEventListener('change',()=>{if(input.checked)update(input.value)}));
+  update(root.querySelector('input[name="ag-booking-service"]:checked')?.value||'focus');
+})();
+</script>

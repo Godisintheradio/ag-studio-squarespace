@@ -1,5 +1,5 @@
-/* AG STUDIO — Selezione testo globale con colore unico e link senza sottolineatura. */
-/* Nome file mantenuto per compatibilità con il collegamento già fornito a Squarespace. */
+/* AG STUDIO — Selezione testo globale e rimozione sottolineature dei link. */
+/* Nome file mantenuto per compatibilità con il collegamento già inserito in Squarespace. */
 
 /* Evidenziazione di tutto il testo selezionabile. */
 ::selection {
@@ -7,11 +7,20 @@
   color: #192925;
 }
 
-/* Rimuove la sottolineatura dai link, anche durante hover e focus.
-   Non modifica outline di accessibilità o bordi di navigazione attiva. */
-a,
-a:hover,
-a:focus,
-a:active {
-  text-decoration: none;
+/* Link globali: prevale sulla text-decoration dei temi Squarespace,
+   anche se applicata a elementi interni al collegamento. */
+html body a,
+html body a:link,
+html body a:visited,
+html body a:hover,
+html body a:focus,
+html body a:active,
+html body a *,
+html body a:hover * {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
+
+/* Non si disattivano outline di focus, bordi decorativi o indicatori
+   di menu: eventuali sottolineature create con pseudo-elementi o
+   border-bottom vanno affrontate sui rispettivi selettori. */

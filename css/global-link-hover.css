@@ -1,4 +1,4 @@
-/* AG STUDIO — Selezione testo con il mouse: sfondo #E6EDE2, variante avorio #F5F3EE sulle sezioni sage. */
+/* AG STUDIO — Selezione testo globale e link senza sottolineatura. */
 /* Nome file mantenuto per compatibilità con il collegamento già fornito a Squarespace. */
 
 ::selection {
@@ -10,4 +10,13 @@
 .ag-bg-sage ::selection {
   background-color: #F5F3EE;
   color: #192925;
+}
+
+/* Rimuove la sottolineatura dai link, anche durante hover e focus.
+   Non modifica outline di accessibilità o bordi di navigazione attiva. */
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
 }

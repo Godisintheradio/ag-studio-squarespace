@@ -1,14 +1,12 @@
-/* AG STUDIO — Selezione testo globale e rimozione sottolineature dei link. */
-/* Nome file mantenuto per compatibilità con il collegamento già inserito in Squarespace. */
+/* AG STUDIO — Selezione testo e sottolineatura link solo al passaggio del mouse. */
+/* Percorso mantenuto per compatibilità con il collegamento Squarespace. */
 
-/* Evidenziazione di tutto il testo selezionabile. */
 ::selection {
   background-color: #E0A66B;
   color: #192925;
 }
 
-/* Link globali: prevale sulla text-decoration dei temi Squarespace,
-   anche se applicata a elementi interni al collegamento. */
+/* Reset sottolineature predefinite, anche su testo annidato. */
 html body a,
 html body a:link,
 html body a:visited,
@@ -21,6 +19,20 @@ html body a:hover * {
   text-decoration-line: none !important;
 }
 
-/* Non si disattivano outline di focus, bordi decorativi o indicatori
-   di menu: eventuali sottolineature create con pseudo-elementi o
-   border-bottom vanno affrontate sui rispettivi selettori. */
+/* Link testuali: linea discreta solo in hover e focus da tastiera. */
+html body a:not(.btn):not(.sqs-button-element):not(.sqs-block-button-element):not(.ag-contact-route):is(:hover, :focus-visible) {
+  text-decoration-line: underline !important;
+  text-decoration-color: currentColor !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 5px;
+}
+
+/* Anche quando il testo del link è racchiuso in span o altri elementi. */
+html body a:not(.btn):not(.sqs-button-element):not(.sqs-block-button-element):not(.ag-contact-route):is(:hover, :focus-visible) > :is(span, strong, em, b, i) {
+  text-decoration-line: underline !important;
+  text-decoration-color: currentColor !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 5px;
+}
+
+/* Mantiene l'outline di focus accessibile e non tocca bordi del tema. */

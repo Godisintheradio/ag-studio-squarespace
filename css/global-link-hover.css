@@ -1,14 +1,9 @@
-/* AG STUDIO — Selezione testo globale e link senza sottolineatura. */
+/* AG STUDIO — Selezione testo globale con colore unico e link senza sottolineatura. */
 /* Nome file mantenuto per compatibilità con il collegamento già fornito a Squarespace. */
 
+/* Evidenziazione di tutto il testo selezionabile. */
 ::selection {
-  background-color: #E6EDE2;
-  color: #192925;
-}
-
-/* Applicare .ag-bg-sage alle sezioni con background #E6EDE2. */
-.ag-bg-sage ::selection {
-  background-color: #F5F3EE;
+  background-color: #E0A66B;
   color: #192925;
 }
 

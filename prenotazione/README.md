@@ -2,7 +2,17 @@
 
 Versione di sviluppo della card interattiva per Squarespace 7.1.
 
-## Installazione
+## Installazione consigliata: una riga
+
+Nel blocco Codice HTML di Squarespace usa **solo** questo richiamo (rimuovendo il precedente blocco completo):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/Godisintheradio/ag-studio-squarespace@feature/prenotazione-modulo/prenotazione/prenotazione-loader.js"></script>
+```
+
+Questo script inserisce HTML, CSS e comportamento dinamico in pagina. Verificare sul sito pubblicato: nell'editor Squarespace gli script esterni possono essere inibiti. La CDN jsDelivr può mantenere in cache i file di branch fino a circa 12 ore. Il file `prenotazione-loader.js` è una versione distribuibile derivata da `prenotazione-modulo.html`: **se modifichi l'HTML originale devi rigenerare e aggiornare anche il loader**. Evitare copie divergenti tra i due file.
+
+## Installazione manuale alternativa
 
 1. Crea la Hero con gli strumenti nativi Squarespace (non è inclusa nel codice).
 2. Aggiungi un **blocco Codice** nella sezione delle consulenze.

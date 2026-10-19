@@ -27,6 +27,8 @@
         <span>Carte</span><span>Apple Pay</span><span>Google Pay</span><span>Link</span><span>PayPal</span><span>Satispay</span><span>Klarna</span><span>Scalapay</span><span>Amazon Pay</span><span>SEPA</span>
       </div>
     </div>
+    <a id="ag-booking-buy" class="ag-booking__buy" href="https://buy.stripe.com/8x200i0Bv53UcKN7wL6AM09" target="_blank" rel="noopener noreferrer">Acquista ora <span aria-hidden="true">↗</span></a>
+    <p class="ag-booking__buy-note">Hai già prenotato? Puoi completare il pagamento qui. Se non hai ancora scelto data e ora, torna al calendario: l'acquisto da solo non riserva un appuntamento.</p>
     <hr>
     <ul id="ag-booking-benefits" class="ag-booking__benefits">
       <li>1 sessione individuale da 60 minuti</li>
@@ -66,6 +68,9 @@
 #ag-booking .ag-booking__installments p{font-size:12px;line-height:1.65;color:#d6e5cb;margin:8px 0 0}
 #ag-booking .ag-booking__methods{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
 #ag-booking .ag-booking__methods span{display:inline-flex;align-items:center;border-radius:20px;padding:3px 7px;background:#f5f3ee;color:#192925;font-size:10px;font-weight:700;line-height:1.4}
+#ag-booking .ag-booking__buy{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#f5f3ee;color:#192925;border-radius:8px;padding:13px 17px;text-decoration:none;font-size:14px;font-weight:750;margin-top:18px}
+#ag-booking .ag-booking__buy:hover{background:#d6e5cb}
+#ag-booking .ag-booking__buy-note{color:#c6d5ca;font-size:11px;line-height:1.6;margin:9px 0 0}
 #ag-booking hr{border:0;border-top:1px solid #456057;margin:24px 0}
 #ag-booking .ag-booking__benefits{list-style:none;padding:0;margin:0;display:grid;gap:13px}
 #ag-booking .ag-booking__benefits li{display:flex;gap:11px;font-size:14px;line-height:1.55;color:#e9f0ea}
@@ -82,15 +87,16 @@
   if(!root || root.dataset.initialized==='true') return;
   root.dataset.initialized='true';
   const offers={
-    focus:{name:'Sessione Focus',sub:'Consulenza individuale online',price:'110 €',benefits:['1 sessione individuale da 60 minuti','Approfondimento su un obiettivo specifico','Consulenza online, pratica e mirata'],support:'Dopo la prenotazione riceverai le indicazioni per completare il pagamento.'},
-    autonomia:{name:'Percorso Autonomia',sub:'Tre incontri per acquisire autonomia',price:'300 €',benefits:['3 sessioni individuali da 60 minuti','Da utilizzare entro 90 giorni dalla prima prenotazione','WhatsApp per spostamenti di sessione e domande semplici'],support:'WhatsApp per comunicazioni organizzative e brevi chiarimenti che non richiedono operatività al PC fuori dalle lezioni.'},
-    advanced:{name:'Percorso Advanced',sub:'Un accompagnamento più approfondito',price:'475 €',benefits:['5 sessioni individuali da 60 minuti','Da utilizzare entro 180 giorni dalla prima prenotazione','WhatsApp per spostamenti di sessione e domande semplici'],support:'WhatsApp per comunicazioni organizzative e brevi chiarimenti che non richiedono operatività al PC fuori dalle lezioni.'}
+    focus:{buy:'https://buy.stripe.com/8x200i0Bv53UcKN7wL6AM09',name:'Sessione Focus',sub:'Consulenza individuale online',price:'110 €',benefits:['1 sessione individuale da 60 minuti','Approfondimento su un obiettivo specifico','Consulenza online, pratica e mirata'],support:'Dopo la prenotazione riceverai le indicazioni per completare il pagamento.'},
+    autonomia:{buy:'https://buy.stripe.com/6oU9ASckd67Y7qteZd6AM0a',name:'Percorso Autonomia',sub:'Tre incontri per acquisire autonomia',price:'300 €',benefits:['3 sessioni individuali da 60 minuti','Da utilizzare entro 90 giorni dalla prima prenotazione','WhatsApp per spostamenti di sessione e domande semplici'],support:'WhatsApp per comunicazioni organizzative e brevi chiarimenti che non richiedono operatività al PC fuori dalle lezioni.'},
+    advanced:{buy:'https://buy.stripe.com/6oU3cu0BvbsibGJeZd6AM08',name:'Percorso Advanced',sub:'Un accompagnamento più approfondito',price:'475 €',benefits:['5 sessioni individuali da 60 minuti','Da utilizzare entro 180 giorni dalla prima prenotazione','WhatsApp per spostamenti di sessione e domande semplici'],support:'WhatsApp per comunicazioni organizzative e brevi chiarimenti che non richiedono operatività al PC fuori dalle lezioni.'}
   };
   function update(key){
     const offer=offers[key];if(!offer)return;
     root.querySelector('#ag-booking-name').textContent=offer.name;
     root.querySelector('#ag-booking-sub').textContent=offer.sub;
     root.querySelector('#ag-booking-price').textContent=offer.price;
+    root.querySelector('#ag-booking-buy').href=offer.buy;
     root.querySelector('#ag-booking-support').textContent=offer.support;
     root.querySelector('#ag-booking-benefits').replaceChildren(...offer.benefits.map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
   }

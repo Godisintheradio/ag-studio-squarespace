@@ -18,7 +18,9 @@ Versione di sviluppo della card interattiva per Squarespace 7.1.
 - I nomi dei provider di pagamento sono etichette testuali, **non loghi ufficiali**.
 - WhatsApp è inteso soltanto per comunicazioni organizzative e domande semplici che non richiedono operatività al PC fuori dalle lezioni.
 - Le condizioni della rateizzazione sono stabilite dal provider al checkout.
-- Non caricare link di pagamento Stripe fino alla relativa fase di integrazione.
+- Il pulsante **Acquista ora** nel riepilogo usa il collegamento Stripe corrispondente al servizio selezionato; si apre in una nuova scheda.
+- L'acquisto non crea una prenotazione su Acuity. Se il cliente paga senza avere prenotato, è necessario concordare e inserire separatamente l'appuntamento.
+- Stripe e Acuity non sono sincronizzati automaticamente: controllare l'abbinamento fra pagamento e appuntamento.
 
 ## Prove prima del rilascio
 

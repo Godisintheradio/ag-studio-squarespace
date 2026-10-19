@@ -1,34 +1,13 @@
-/* AG Studio — Global link hover underline
-   Importare questo foglio CSS nel sito Squarespace.
-   Aggiungere la classe .ag-bg-sage al contenitore delle sezioni
-   con sfondo #E6EDE2 per la variante avorio.
-*/
+/* AG STUDIO — Selezione testo con il mouse: sfondo #E6EDE2, variante avorio #F5F3EE sulle sezioni sage. */
+/* Nome file mantenuto per compatibilità con il collegamento già fornito a Squarespace. */
 
-:root {
-  --ag-underline-hover: #E6EDE2;
-  --ag-underline-on-sage: #F5F3EE;
+::selection {
+  background-color: #E6EDE2;
+  color: #192925;
 }
 
-/* Link testuali: esclude pulsanti e card completamente cliccabili. */
-a:not(.btn):not(.sqs-button-element):not(.sqs-block-button-element):not(.ag-contact-route) {
-  text-decoration-line: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 5px;
-  transition: text-decoration-color .25s ease;
-}
-
-a:not(.btn):not(.sqs-button-element):not(.sqs-block-button-element):not(.ag-contact-route):hover {
-  text-decoration-color: var(--ag-underline-hover);
-}
-
-/* Variante per le sezioni con sfondo #E6EDE2. */
-.ag-bg-sage a:not(.btn):not(.sqs-button-element):not(.sqs-block-button-element):not(.ag-contact-route):hover {
-  text-decoration-color: var(--ag-underline-on-sage);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  a {
-    transition: none;
-  }
+/* Applicare .ag-bg-sage alle sezioni con background #E6EDE2. */
+.ag-bg-sage ::selection {
+  background-color: #F5F3EE;
+  color: #192925;
 }

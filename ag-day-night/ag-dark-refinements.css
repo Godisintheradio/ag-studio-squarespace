@@ -74,3 +74,28 @@ html[data-ag-theme="dark"] .ag-contact-routes :is(p,li,span){
  transition:background-color .75s ease,color .75s ease;
  }
 }
+
+/* 0.1.6 — Contact route cards (the actual painted surfaces are anchors).
+   Keep the original grid, hover movement, border-radius and day palette. */
+html[data-ag-theme="dark"] .ag-contact-routes > .ag-contact-route{
+ background:#14191B!important;
+ border-color:#384741!important;
+ color:#F5F3EE!important;
+ transition:transform .2s ease,border-color .2s ease,background-color .75s ease,color .75s ease;
+}
+html[data-ag-theme="dark"] .ag-contact-routes > .ag-contact-route:first-child{
+ background:#202D29!important;
+ border-color:#4A6558!important;
+}
+html[data-ag-theme="dark"] .ag-contact-route :is(h3,.ag-contact-route-num,.ag-contact-route-arrow,.ag-contact-route-go){
+ color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] .ag-contact-route p{
+ color:#BCC8C3!important;
+}
+html[data-ag-theme="dark"] .ag-contact-route:hover{
+ border-color:#E0A66B!important;
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-ag-theme="dark"] .ag-contact-routes > .ag-contact-route{transition:none!important}
+}

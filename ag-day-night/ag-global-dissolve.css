@@ -1,0 +1,6 @@
+/* AG Studio global fade v0.1 */
+:root{--ag-fade:750ms}
+@media(prefers-reduced-motion:no-preference){
+html[data-ag-theme] :is(.page-section,.section-background,.section-background-content,#header,#footer,footer,.sqs-block-code .ag-code-white-surface){transition:background-color var(--ag-fade) ease,color var(--ag-fade) ease,border-color var(--ag-fade) ease!important}
+html[data-ag-theme] .page-section :is(h1,h2,h3,h4,h5,h6,p,a,button,li){transition:color var(--ag-fade) ease,background-color var(--ag-fade) ease,border-color var(--ag-fade) ease}
+}

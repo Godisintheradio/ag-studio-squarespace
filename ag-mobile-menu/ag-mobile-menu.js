@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.0. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.1. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -41,7 +41,7 @@ function build(){
    const icon=document.createElement('button');icon.type='button';icon.className='agmm-toggle agmm-icon';icon.textContent='+';icon.setAttribute('aria-label','Espandi '+item.title);
    const list=document.createElement('ul');list.className='agmm-children';list.id='agmm-sub-'+i;list.hidden=true;
    for(const child of item.children){const a=makeLink(child);if(!a)continue;a.className='';const li=document.createElement('li');li.append(a);list.append(li)}
-   function toggle(){const opening=list.hidden;container.querySelectorAll('.agmm-children').forEach(el=>{el.hidden=true});container.querySelectorAll('.agmm-toggle[aria-expanded]').forEach(el=>el.setAttribute('aria-expanded','false'));container.querySelectorAll('.agmm-icon').forEach(el=>{el.textContent='+'});list.hidden=!opening;button.setAttribute('aria-expanded',String(opening));icon.setAttribute('aria-expanded',String(opening));icon.textContent=opening?'−':'+';icon.setAttribute('aria-label',(opening?'Chiudi ':'Espandi ')+item.title)}
+   function toggle(){const opening=list.hidden;container.querySelectorAll('.agmm-children').forEach(el=>{el.hidden=true});container.querySelectorAll('.agmm-toggle[aria-expanded]').forEach(el=>el.setAttribute('aria-expanded','false'));container.querySelectorAll('.agmm-icon').forEach(el=>{el.textContent='+'});list.hidden=!opening;button.setAttribute('aria-expanded',String(opening));icon.setAttribute('aria-expanded',String(opening));icon.textContent='+';icon.setAttribute('aria-label',(opening?'Chiudi ':'Espandi ')+item.title)}
    [button,icon].forEach(b=>{b.setAttribute('aria-controls',list.id);b.setAttribute('aria-expanded','false');b.addEventListener('click',toggle)});
    row.append(button,icon);group.append(row,list);
   }else{const a=makeLink(item.source,item.title);if(a){row.append(a);group.append(row)}}

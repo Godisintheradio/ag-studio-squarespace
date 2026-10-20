@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.1. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.2. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -62,8 +62,15 @@ function setup(){
  const panel=document.createElement('section');panel.className='agmm-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label','Navigazione principale');
  const head=document.createElement('div');head.className='agmm-head';
  const brand=document.createElement('a');brand.className='agmm-brand';brand.href='/';brand.setAttribute('aria-label','Vai alla homepage');
- const logo=document.querySelector('.header-title-logo img, .header-title img, .header-branding img');
- if(logo){const img=document.createElement('img');img.src=logo.currentSrc||logo.src;img.alt=logo.alt||'Logo';brand.append(img)}else brand.textContent='Antonio Giardiello';
+ // Reuse the actual Squarespace header branding, prioritizing its logo image.
+ const header=document.querySelector('header#header, header.Header, .header');
+ const logo=header?.querySelector('.header-title-logo img, .header-title img, .header-branding img');
+ const logoUrl=logo&&(logo.currentSrc||logo.getAttribute('src')||logo.getAttribute('data-src'));
+ if(logoUrl){const img=document.createElement('img');img.src=logoUrl;img.alt=logo.alt||'Antonio Giardiello';img.decoding='async';brand.append(img)}
+ else {
+  const label=header?.querySelector('.header-title-text a, .header-title-text, .header-title a, .header-title');
+  brand.textContent=text(label)||'Antonio Giardiello';
+ }
  const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>close());
  head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);panel.append(head,body);overlay.append(panel);document.body.append(overlay);
  overlay.addEventListener('click',e=>{if(e.target===overlay)close();else if(e.target.closest('#agmm a[href]'))close(false)});

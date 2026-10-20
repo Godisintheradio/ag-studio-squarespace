@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.4. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.5. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -54,7 +54,7 @@ function build(){
  themeButton.innerHTML='<span class="agmm-theme-icon" aria-hidden="true">☀</span><span class="agmm-theme-track" aria-hidden="true"><span class="agmm-theme-thumb"><span class="agmm-thumb-sun">☀</span><span class="agmm-thumb-moon">☾</span></span></span><span class="agmm-theme-icon" aria-hidden="true">☾</span>';
  function syncTheme(){const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';themeButton.setAttribute('aria-checked',String(dark));themeButton.setAttribute('aria-label',dark?'Attiva modalità giorno':'Attiva modalità notte');}
  syncTheme();
- themeButton.addEventListener('click',()=>{const nativeSwitch=document.getElementById('ag-theme-switch');if(nativeSwitch){nativeSwitch.click();syncTheme()}});
+ themeButton.addEventListener('click',()=>{const nativeSwitch=document.getElementById('ag-theme-switch');if(nativeSwitch){nativeSwitch.click();syncTheme();syncMenuPalette()}});
  utilities.append(themeButton);
  secondary.append(utilities);
  const account=root.querySelector('.user-accounts-link a');
@@ -62,6 +62,23 @@ function build(){
  const cta=root.querySelector('.header-menu-cta a[href]');
  if(cta){const a=makeLink(cta);if(a){a.className='agmm-cta';secondary.append(a)}}
  container.append(secondary);return container;
+}
+function syncMenuPalette(){
+ if(!overlay)return;
+ const section=document.querySelector('main .page-section, #page .page-section, .page-section');
+ if(!section)return;
+ const candidates=[section.querySelector('.section-background'),section.querySelector('.section-background-content'),section].filter(Boolean);
+ const visibleColor=value=>value && value!=='transparent' && !/rgba?\\([^)]*,\\s*0\\s*\\)/.test(value);
+ let color='';
+ for(const el of candidates){const value=getComputedStyle(el).backgroundColor;if(visibleColor(value)){color=value;break}}
+ if(!color)return;
+ overlay.style.setProperty('--agmm-live-bg',color);
+ const channels=color.match(/[\\d.]+/g);
+ if(channels&&channels.length>=3){
+  const [r,g,b]=channels.map(Number);
+  const light=(r*.2126+g*.7152+b*.0722)>145;
+  overlay.dataset.agmmContrast=light?'light':'dark';
+ }
 }
 function setup(){
  if(document.getElementById(ID))return;
@@ -82,11 +99,13 @@ function setup(){
  }
  const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>{tapAnimation(x);setTimeout(()=>close(),110)});
  head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);panel.append(head,body);overlay.append(panel);document.body.append(overlay);
+ syncMenuPalette();
+ new MutationObserver(()=>syncMenuPalette()).observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
  overlay.addEventListener('click',e=>{if(e.target===overlay)close();else if(e.target.closest('#agmm a[href]'))close(false)});
  document.addEventListener('click',e=>{
   const btn=e.target.closest?.(config.burger);if(!btn||!visible(btn))return;
   e.preventDefault();e.stopImmediatePropagation();tapAnimation(btn);if(!overlay.hidden){close();return}
-  const current=build();if(!current)return;body.replaceChildren(current);
+  const current=build();if(!current)return;body.replaceChildren(current);syncMenuPalette();
   opener=btn;lastFocus=document.activeElement;restoreOverflow=document.body.style.overflow;
   inerted=Array.from(document.body.children).filter(n=>n!==overlay).map(n=>[n,n.inert]);inerted.forEach(([n])=>n.inert=true);
   document.body.style.overflow='hidden';overlay.hidden=false;btn.setAttribute('aria-expanded','true');

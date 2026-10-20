@@ -16,3 +16,8 @@
 }
 @media(max-width:767px){.ag-header-theme-slot{display:none!important}}
 @media(prefers-reduced-motion:reduce){.ag-header-theme-slot #ag-theme-switch::before,.ag-header-theme-slot #ag-theme-switch::after{transition:none!important}}
+
+/* Desktop header: breathing room between cart and theme switch */
+@media(min-width:768px){
+ .header-display-desktop .header-actions > .ag-header-theme-slot{margin-left:24px;margin-right:12px}
+}

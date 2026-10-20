@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.2. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.3. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -6,6 +6,7 @@ window.__AGMM71__=true;
 const ID='agmm';
 const config={nav:'.header-menu-nav-list',burger:'.header-burger-btn'};
 let overlay,opener,lastFocus,restoreOverflow='',inerted=[],closeDelay=null;
+function tapAnimation(el){if(!el)return;el.classList.remove('agmm-tapped');void el.offsetWidth;el.classList.add('agmm-tapped');setTimeout(()=>el.classList.remove('agmm-tapped'),400)}
 const visible=el=>!!(el&&el.getClientRects().length);
 const text=el=>(el?.textContent||'').replace(/\s+/g,' ').trim();
 function permittedHref(el){
@@ -41,7 +42,7 @@ function build(){
    const icon=document.createElement('button');icon.type='button';icon.className='agmm-toggle agmm-icon';icon.textContent='+';icon.setAttribute('aria-label','Espandi '+item.title);
    const list=document.createElement('ul');list.className='agmm-children';list.id='agmm-sub-'+i;list.hidden=true;
    for(const child of item.children){const a=makeLink(child);if(!a)continue;a.className='';const li=document.createElement('li');li.append(a);list.append(li)}
-   function toggle(){const opening=list.hidden;container.querySelectorAll('.agmm-children').forEach(el=>{el.hidden=true});container.querySelectorAll('.agmm-toggle[aria-expanded]').forEach(el=>el.setAttribute('aria-expanded','false'));container.querySelectorAll('.agmm-icon').forEach(el=>{el.textContent='+'});list.hidden=!opening;button.setAttribute('aria-expanded',String(opening));icon.setAttribute('aria-expanded',String(opening));icon.textContent='+';icon.setAttribute('aria-label',(opening?'Chiudi ':'Espandi ')+item.title)}
+   function toggle(){tapAnimation(icon);const opening=list.hidden;container.querySelectorAll('.agmm-children').forEach(el=>{el.hidden=true});container.querySelectorAll('.agmm-toggle[aria-expanded]').forEach(el=>el.setAttribute('aria-expanded','false'));container.querySelectorAll('.agmm-icon').forEach(el=>{el.textContent='+'});list.hidden=!opening;button.setAttribute('aria-expanded',String(opening));icon.setAttribute('aria-expanded',String(opening));icon.textContent='+';icon.setAttribute('aria-label',(opening?'Chiudi ':'Espandi ')+item.title)}
    [button,icon].forEach(b=>{b.setAttribute('aria-controls',list.id);b.setAttribute('aria-expanded','false');b.addEventListener('click',toggle)});
    row.append(button,icon);group.append(row,list);
   }else{const a=makeLink(item.source,item.title);if(a){row.append(a);group.append(row)}}
@@ -71,12 +72,12 @@ function setup(){
   const label=header?.querySelector('.header-title-text a, .header-title-text, .header-title a, .header-title');
   brand.textContent=text(label)||'Antonio Giardiello';
  }
- const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>close());
+ const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>{tapAnimation(x);setTimeout(()=>close(),110)});
  head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);panel.append(head,body);overlay.append(panel);document.body.append(overlay);
  overlay.addEventListener('click',e=>{if(e.target===overlay)close();else if(e.target.closest('#agmm a[href]'))close(false)});
  document.addEventListener('click',e=>{
   const btn=e.target.closest?.(config.burger);if(!btn||!visible(btn))return;
-  e.preventDefault();e.stopImmediatePropagation();if(!overlay.hidden){close();return}
+  e.preventDefault();e.stopImmediatePropagation();tapAnimation(btn);if(!overlay.hidden){close();return}
   const current=build();if(!current)return;body.replaceChildren(current);
   opener=btn;lastFocus=document.activeElement;restoreOverflow=document.body.style.overflow;
   inerted=Array.from(document.body.children).filter(n=>n!==overlay).map(n=>[n,n.inert]);inerted.forEach(([n])=>n.inert=true);

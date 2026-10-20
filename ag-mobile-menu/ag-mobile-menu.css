@@ -95,3 +95,12 @@
 #agmm .agmm-theme-switch:focus-visible{outline:2px solid #E0A66B;outline-offset:4px;border-radius:8px}
 @media(max-width:767px){body:has(#agmm) #ag-theme-switch{display:none!important}}
 @media(prefers-reduced-motion:reduce){#agmm .agmm-theme-track,#agmm .agmm-theme-thumb{transition:none!important}}
+
+/* 0.1.5: background sampled from the active Squarespace page theme */
+#agmm .agmm-panel{background:var(--agmm-live-bg)!important;color:var(--agmm-live-ink,var(--agmm-ink))}
+#agmm[data-agmm-contrast="light"]{--agmm-live-ink:#15201B;--agmm-line:rgba(21,32,27,.22)}
+#agmm[data-agmm-contrast="dark"]{--agmm-live-ink:#F5F3EE;--agmm-line:rgba(245,243,238,.20)}
+#agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action,#agmm .agmm-cta{color:var(--agmm-live-ink,var(--agmm-ink))!important}
+#agmm .agmm-close,#agmm .agmm-theme-switch{color:var(--agmm-live-ink,var(--agmm-ink))}
+#agmm .agmm-head,#agmm .agmm-group{border-color:var(--agmm-line)}
+#agmm .agmm-cta{border-color:currentColor}

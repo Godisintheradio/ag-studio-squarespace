@@ -55,7 +55,6 @@ function build(){
  function syncTheme(){const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';themeButton.setAttribute('aria-checked',String(dark));themeButton.setAttribute('aria-label',dark?'Attiva modalità giorno':'Attiva modalità notte');}
  syncTheme();
  themeButton.addEventListener('click',()=>{const nativeSwitch=document.getElementById('ag-theme-switch');if(nativeSwitch){nativeSwitch.click();syncTheme()}});
- const themeObserver=new MutationObserver(syncTheme);themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
  utilities.append(themeButton);
  secondary.append(utilities);
  const account=root.querySelector('.user-accounts-link a');

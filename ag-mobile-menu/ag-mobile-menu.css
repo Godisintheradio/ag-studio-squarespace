@@ -23,3 +23,24 @@
 #agmm .agmm-cta{display:block;background:var(--agmm-ink);border:1px solid var(--agmm-ink);color:var(--agmm-bg)!important;text-decoration:none!important;text-align:center;padding:15px 22px;font-size:15px;font-weight:600;border-radius:3px}
 #agmm a:focus-visible,#agmm button:focus-visible{outline:2px solid var(--agmm-ink);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){#agmm,#agmm .agmm-panel{transition:none!important}}
+
+/* Beta 0.1.1 — palette scura coordinata al footer black-bold */
+#agmm{--agmm-bg:#171b19;--agmm-ink:#f7f5ef;--agmm-muted:#c5cbc5;--agmm-line:rgba(247,245,239,.18);--agmm-accent:#E0A66B}
+#agmm .agmm-panel{background:var(--agmm-bg)}
+#agmm .agmm-head{border-color:var(--agmm-line)}
+#agmm .agmm-brand{color:var(--agmm-ink)!important}
+#agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action{color:var(--agmm-ink)!important}
+#agmm .agmm-children a{color:var(--agmm-muted)!important}
+#agmm .agmm-close{transition:transform .26s ease,color .26s ease;transform:rotate(-90deg)}
+#agmm.agmm-open .agmm-close{transform:rotate(0deg)}
+#agmm .agmm-close:active{transform:rotate(90deg) scale(.85);color:var(--agmm-accent)}
+#agmm .agmm-icon{transition:transform .28s cubic-bezier(.2,.7,.2,1),color .25s ease}
+#agmm .agmm-icon[aria-expanded="true"]{transform:rotate(180deg);color:var(--agmm-accent)!important}
+#agmm .agmm-icon:active{transform:scale(.76)}
+#agmm .agmm-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:58px;padding:13px 18px;background:transparent;color:var(--agmm-ink)!important;border:1px solid rgba(247,245,239,.65);border-radius:2px;text-align:left;transition:border-color .25s ease,background-color .25s ease,color .25s ease}
+#agmm .agmm-cta::after{content:"↗";font-family:Arial,sans-serif;font-size:25px;font-weight:400;line-height:1;transition:transform .24s ease}
+#agmm .agmm-cta:hover,#agmm .agmm-cta:focus-visible{border-color:var(--agmm-accent);background:rgba(224,166,107,.08)}
+#agmm .agmm-cta:hover::after{transform:translate(3px,-3px)}
+#agmm .agmm-cta:active::after{transform:translate(5px,-5px) scale(.88)}
+#agmm a:focus-visible,#agmm button:focus-visible{outline-color:var(--agmm-accent)}
+@media(prefers-reduced-motion:reduce){#agmm .agmm-close,#agmm .agmm-icon,#agmm .agmm-cta,#agmm .agmm-cta::after{transition:none!important}}

@@ -158,3 +158,16 @@ html[data-ag-theme="dark"] #ag-booking .ag-booking__choices :is(.ag-booking__int
   transition:background-color .75s ease,color .75s ease,border-color .75s ease;
  }
 }
+
+/* 0.1.10 — Desktop dropdown folder "Servizi" should not receive a
+   distinct active-page text color when a child page is current.
+   Inherit the same header navigation ink as neighboring menu entries. */
+@media(min-width:768px){
+ html[data-ag-theme="dark"] .header-display-desktop .header-nav-item--folder.header-nav-item--active{
+  color:inherit!important;
+ }
+ html[data-ag-theme="dark"] .header-display-desktop .header-nav-item--folder.header-nav-item--active > .header-nav-folder-title,
+ html[data-ag-theme="dark"] .header-display-desktop .header-nav-item--folder.header-nav-item--active > .header-nav-folder-title .header-nav-folder-title-text{
+  color:inherit!important;
+ }
+}

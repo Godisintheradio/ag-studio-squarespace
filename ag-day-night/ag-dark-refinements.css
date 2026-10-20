@@ -128,12 +128,6 @@ html[data-ag-theme="dark"] .sqs-shape-block-container[data-shape-name="rectangle
 /* 0.1.9 — Booking module (#ag-booking): dark-mode contrast.
    Its inline Code Block CSS hardcodes white option surfaces and dark ink.
    Scoped to booking choices; preserve the separate dark summary panel. */
-html[data-ag-theme="dark"] #ag-booking{
- --ag-ink:#F5F3EE;
- --ag-muted:#BCC8C3;
- --ag-border:#45544D;
- --ag-green:#E0A66B;
-}
 html[data-ag-theme="dark"] #ag-booking .ag-booking__choices{
  background-color:#14191B!important;
  border-color:#45544D!important;
@@ -152,7 +146,7 @@ html[data-ag-theme="dark"] #ag-booking .ag-booking__option:has(input:checked){
  background-color:#28352F!important;
  border-color:#E0A66B!important;
 }
-html[data-ag-theme="dark"] #ag-booking input[type="radio"]{
+html[data-ag-theme="dark"] #ag-booking .ag-booking__choices input[type="radio"]{
  accent-color:#E0A66B!important;
  color-scheme:dark;
 }

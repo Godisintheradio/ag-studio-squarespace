@@ -1,4 +1,4 @@
-/* AG Studio — Day/Night toggle, pilot 0.1.1 */
+/* AG Studio — Day/Night toggle, pilot 0.1.2 */
 (function(){
  'use strict';
  if(window.__AG_THEME_TOGGLE__)return;
@@ -34,11 +34,31 @@
      else el.removeAttribute('data-section-theme');
    }
  }
+ // Mark only the outermost solid-white surfaces inside Squarespace Code Blocks.
+ // Avoid affecting nested cards, buttons, images and other internal UI.
+ function markWhiteCodeSurfaces(){
+   document.querySelectorAll('.sqs-block-code .sqs-block-content').forEach(content=>{
+     const root=content.firstElementChild;
+     if(!root)return;
+     const candidates=[content,root];
+     // Also support an unstyled wrapper containing a single full-width surface.
+     if(root.children.length===1)candidates.push(root.firstElementChild);
+     for(const el of candidates){
+       if(!el || el.classList.contains('ag-theme-code-white'))continue;
+       const bg=getComputedStyle(el).backgroundColor.replace(/\\s/g,'').toLowerCase();
+       if(bg==='rgb(255,255,255)' || bg==='rgba(255,255,255,1)' || bg==='#fff' || bg==='#ffffff'){
+         el.classList.add('ag-theme-code-white');
+         break;
+       }
+     }
+   });
+ }
  function apply(){
    root.setAttribute('data-ag-theme',mode);
    root.style.colorScheme=mode;
    if(observer)observer.disconnect();
    for(const el of targets())syncSection(el);
+   markWhiteCodeSurfaces();
    if(observer)observer.observe(document.body,{subtree:true,childList:true});
    if(button){
      button.setAttribute('aria-label',mode==='dark'?'Attiva modalità giorno':'Attiva modalità notte');

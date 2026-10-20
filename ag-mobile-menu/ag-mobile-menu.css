@@ -44,3 +44,8 @@
 #agmm .agmm-cta:active::after{transform:translate(5px,-5px) scale(.88)}
 #agmm a:focus-visible,#agmm button:focus-visible{outline-color:var(--agmm-accent)}
 @media(prefers-reduced-motion:reduce){#agmm .agmm-close,#agmm .agmm-icon,#agmm .agmm-cta,#agmm .agmm-cta::after{transition:none!important}}
+
+/* Interazione tattile sull'hamburger nativo Squarespace */
+.header-burger-btn{transition:transform .22s cubic-bezier(.22,.61,.36,1)}
+.header-burger-btn:active{transform:scale(.86) rotate(8deg)}
+@media(prefers-reduced-motion:reduce){.header-burger-btn{transition:none!important}}

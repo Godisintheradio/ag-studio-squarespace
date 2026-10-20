@@ -1,0 +1,18 @@
+/* AG Studio — desktop theme control v0.1 */
+@media(min-width:768px){
+ .ag-header-theme-slot{display:flex;align-items:center;justify-content:center;margin-right:12px;flex:none}
+ .ag-header-theme-slot #ag-theme-switch{position:relative!important;inset:auto!important;bottom:auto!important;right:auto!important;display:flex!important;gap:8px;align-items:center;width:auto;height:40px;margin:0;padding:0;border:0;background:none!important;box-shadow:none!important;border-radius:0;transform:none!important;color:inherit!important}
+ .ag-header-theme-slot #ag-theme-switch:hover{transform:none!important}
+ .ag-header-theme-slot #ag-theme-switch::before{content:"";display:block;width:60px;height:32px;border-radius:99px;background:#D8C7B4;transition:background-color .75s ease}
+ .ag-header-theme-slot #ag-theme-switch::after{content:"";position:absolute;left:3px;top:50%;width:26px;height:26px;background:#F5F3EE;border-radius:50%;box-shadow:0 1px 5px #0002;transform:translateY(-50%);transition:transform .75s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+ .ag-header-theme-slot #ag-theme-switch svg{position:absolute;top:50%;z-index:1;width:17px;height:17px;stroke:#0E1715;transform:translateY(-50%);pointer-events:none}
+ .ag-header-theme-slot #ag-theme-switch .ag-moon{display:none!important}
+ .ag-header-theme-slot #ag-theme-switch .ag-sun{display:block!important;left:7.5px}
+ html[data-ag-theme="dark"] .ag-header-theme-slot #ag-theme-switch::before{background:#24473F}
+ html[data-ag-theme="dark"] .ag-header-theme-slot #ag-theme-switch::after{transform:translate(28px,-50%)}
+ html[data-ag-theme="dark"] .ag-header-theme-slot #ag-theme-switch .ag-sun{display:none!important}
+ html[data-ag-theme="dark"] .ag-header-theme-slot #ag-theme-switch .ag-moon{display:block!important;left:35px}
+ .ag-header-theme-slot #ag-theme-switch:focus-visible{outline:2px solid #E0A66B;outline-offset:4px;border-radius:8px}
+}
+@media(max-width:767px){.ag-header-theme-slot{display:none!important}}
+@media(prefers-reduced-motion:reduce){.ag-header-theme-slot #ag-theme-switch::before,.ag-header-theme-slot #ag-theme-switch::after{transition:none!important}}

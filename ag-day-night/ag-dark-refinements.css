@@ -99,3 +99,15 @@ html[data-ag-theme="dark"] .ag-contact-route:hover{
 @media(prefers-reduced-motion:reduce){
  html[data-ag-theme="dark"] .ag-contact-routes > .ag-contact-route{transition:none!important}
 }
+
+/* 0.1.7 — Squarespace native rectangle Shape Block.
+   Paint the SVG path rather than its transparent wrapper.
+   The existing SVG path preserves all four 16px corners. */
+html[data-ag-theme="dark"] .sqs-shape-block-container[data-shape-name="rectangle"] svg.sqs-shape-rectangle > path{
+ fill:#14191B!important;
+}
+@media(prefers-reduced-motion:no-preference){
+ html[data-ag-theme] .sqs-shape-block-container[data-shape-name="rectangle"] svg.sqs-shape-rectangle > path{
+ transition:fill .75s ease;
+ }
+}

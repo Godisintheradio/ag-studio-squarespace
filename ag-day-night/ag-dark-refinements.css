@@ -1,0 +1,29 @@
+/* AG Studio | Dark refinements 0.1.0 — native Squarespace forms and text
+   Pilot; avoids images, code blocks, header and buttons.
+   Sideral black: #080B0D (not absolute #000000). */
+:root { --ag-sideral-black:#080B0D; --ag-dark-ink:#F5F3EE; --ag-dark-muted:#BCC8C3; }
+@media (prefers-reduced-motion:no-preference){
+ html[data-ag-theme="dark"] .sqs-block-form :is(input,textarea,select,.form-wrapper,.field-list) {
+  transition:background-color .75s ease,color .75s ease,border-color .75s ease;
+ }
+}
+/* Squarespace Form Block — field surfaces and text */
+html[data-ag-theme="dark"] .sqs-block-form .form-wrapper,
+html[data-ag-theme="dark"] .sqs-block-form .field-list,
+html[data-ag-theme="dark"] .sqs-block-form :is(input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),textarea,select){
+ background-color:var(--ag-sideral-black)!important;
+ color:var(--ag-dark-ink)!important;
+}
+html[data-ag-theme="dark"] .sqs-block-form :is(input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),textarea,select){
+ border-color:rgba(245,243,238,.35)!important;
+ color-scheme:dark;
+}
+html[data-ag-theme="dark"] .sqs-block-form :is(input,textarea)::placeholder {color:var(--ag-dark-muted)!important;opacity:1}
+html[data-ag-theme="dark"] .sqs-block-form :is(.title,.description,.caption,.field-element,.form-wrapper label,.field-list label) {
+ color:var(--ag-dark-ink)!important;
+}
+/* Native editorial text inside sections switched to Squarespace black-bold.
+   Excludes custom Code Blocks and links/buttons to preserve custom styling. */
+html[data-ag-theme="dark"] .page-section[data-section-theme="black-bold"] .sqs-block:not(.sqs-block-code):not(.sqs-block-form) :is(h1,h2,h3,h4,h5,h6,p,li,blockquote){
+ color:var(--ag-dark-ink);
+}

@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.6. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.7. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -65,18 +65,11 @@ function build(){
 }
 function syncMenuPalette(){
  if(!overlay)return;
- // Resolve light/dark foreground from the global mode, not a potentially
- // transparent section background. The panel samples the live section color.
+ // Single source of truth: the global switch sets this attribute.
  const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
  overlay.dataset.agmmContrast=dark?'dark':'light';
- const section=document.querySelector('main .page-section, #page .page-section, .page-section');
- if(!section)return;
- const candidates=[section.querySelector('.section-background'),section.querySelector('.section-background-content'),section].filter(Boolean);
- function opaque(value){return value && value!=='transparent' && value!=='rgba(0, 0, 0, 0)' && value!=='#0000'}
- let color='';
- for(const el of candidates){const value=getComputedStyle(el).backgroundColor;if(opaque(value)){color=value;break}}
- if(color)overlay.style.setProperty('--agmm-live-bg',color);
- else overlay.style.removeProperty('--agmm-live-bg');
+ // Background and foreground both derive from the SAME theme token set.
+ // Do not sample the first section, which can have an intentionally inverted palette.
 }
 function setup(){
  if(document.getElementById(ID))return;

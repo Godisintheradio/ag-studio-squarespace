@@ -124,3 +124,43 @@ html[data-ag-theme="dark"] .sqs-shape-block-container[data-shape-name="rectangle
  transition:fill .75s ease,stroke .75s ease;
  }
 }
+
+/* 0.1.9 — Booking module (#ag-booking): dark-mode contrast.
+   Its inline Code Block CSS hardcodes white option surfaces and dark ink.
+   Scoped to booking choices; preserve the separate dark summary panel. */
+html[data-ag-theme="dark"] #ag-booking{
+ --ag-ink:#F5F3EE;
+ --ag-muted:#BCC8C3;
+ --ag-border:#45544D;
+ --ag-green:#E0A66B;
+}
+html[data-ag-theme="dark"] #ag-booking .ag-booking__choices{
+ background-color:#14191B!important;
+ border-color:#45544D!important;
+ color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] #ag-booking .ag-booking__choices h2,
+html[data-ag-theme="dark"] #ag-booking .ag-booking__option strong{
+ color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] #ag-booking .ag-booking__option{
+ background-color:#1B2422!important;
+ border-color:#53635B!important;
+ color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] #ag-booking .ag-booking__option:has(input:checked){
+ background-color:#28352F!important;
+ border-color:#E0A66B!important;
+}
+html[data-ag-theme="dark"] #ag-booking input[type="radio"]{
+ accent-color:#E0A66B!important;
+ color-scheme:dark;
+}
+html[data-ag-theme="dark"] #ag-booking .ag-booking__choices :is(.ag-booking__intro,.ag-booking__option small,.ag-booking__hint){
+ color:#BCC8C3!important;
+}
+@media(prefers-reduced-motion:no-preference){
+ html[data-ag-theme] #ag-booking :is(.ag-booking__choices,.ag-booking__option,.ag-booking__choices h2,.ag-booking__option strong){
+  transition:background-color .75s ease,color .75s ease,border-color .75s ease;
+ }
+}

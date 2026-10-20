@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.3. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.4. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -49,8 +49,17 @@ function build(){
   container.append(group);
  });
  const secondary=document.createElement('div');secondary.className='agmm-secondary';
+ const utilities=document.createElement('div');utilities.className='agmm-utilities';
+ const themeButton=document.createElement('button');themeButton.type='button';themeButton.className='agmm-theme-switch';themeButton.setAttribute('role','switch');
+ themeButton.innerHTML='<span class="agmm-theme-icon" aria-hidden="true">☀</span><span class="agmm-theme-track" aria-hidden="true"><span class="agmm-theme-thumb"><span class="agmm-thumb-sun">☀</span><span class="agmm-thumb-moon">☾</span></span></span><span class="agmm-theme-icon" aria-hidden="true">☾</span>';
+ function syncTheme(){const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';themeButton.setAttribute('aria-checked',String(dark));themeButton.setAttribute('aria-label',dark?'Attiva modalità giorno':'Attiva modalità notte');}
+ syncTheme();
+ themeButton.addEventListener('click',()=>{const nativeSwitch=document.getElementById('ag-theme-switch');if(nativeSwitch){nativeSwitch.click();syncTheme()}});
+ const themeObserver=new MutationObserver(syncTheme);themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
+ utilities.append(themeButton);
+ secondary.append(utilities);
  const account=root.querySelector('.user-accounts-link a');
- if(account){const button=document.createElement('button');button.type='button';button.className='agmm-action';button.textContent=text(account)||'Accedi';button.addEventListener('click',()=>{close(false);account.click()});secondary.append(button)}
+ if(account){const button=document.createElement('button');button.type='button';button.className='agmm-action';button.textContent=text(account)||'Accedi';button.addEventListener('click',()=>{close(false);account.click()});utilities.prepend(button)}
  const cta=root.querySelector('.header-menu-cta a[href]');
  if(cta){const a=makeLink(cta);if(a){a.className='agmm-cta';secondary.append(a)}}
  container.append(secondary);return container;

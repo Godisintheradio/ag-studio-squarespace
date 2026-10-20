@@ -79,3 +79,19 @@
 #agmm .agmm-icon::before{content:none}
 #agmm .agmm-icon[aria-expanded="true"]{transform:rotate(45deg);color:#88A39A!important}
 @media(prefers-reduced-motion:reduce){.header-burger-btn.agmm-tapped,#agmm .agmm-close.agmm-tapped,#agmm .agmm-toggle.agmm-icon.agmm-tapped{animation:none!important}}
+
+/* Beta 0.1.4 — Day/night control, same row as account */
+#agmm .agmm-utilities{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:58px}
+#agmm .agmm-theme-switch{display:flex;align-items:center;gap:9px;flex-shrink:0;background:transparent;border:0;padding:8px 0;color:#F5F3EE;cursor:pointer}
+#agmm .agmm-theme-icon{font-size:21px;line-height:1;color:#D4D9D4;opacity:.78}
+#agmm .agmm-theme-track{position:relative;display:block;width:60px;height:32px;border-radius:99px;background:#D8C7B4;transition:background .25s ease}
+#agmm .agmm-theme-thumb{position:absolute;top:3px;left:3px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#F5F3EE;color:#0E1715;box-shadow:0 1px 5px #0002;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+#agmm .agmm-theme-thumb span{font-size:19px;line-height:1}
+#agmm .agmm-thumb-moon{display:none}
+#agmm .agmm-theme-switch[aria-checked="true"] .agmm-theme-track{background:#24473F}
+#agmm .agmm-theme-switch[aria-checked="true"] .agmm-theme-thumb{transform:translateX(28px)}
+#agmm .agmm-theme-switch[aria-checked="true"] .agmm-thumb-sun{display:none}
+#agmm .agmm-theme-switch[aria-checked="true"] .agmm-thumb-moon{display:block}
+#agmm .agmm-theme-switch:focus-visible{outline:2px solid #E0A66B;outline-offset:4px;border-radius:8px}
+@media(max-width:767px){body:has(#agmm) #ag-theme-switch{display:none!important}}
+@media(prefers-reduced-motion:reduce){#agmm .agmm-theme-track,#agmm .agmm-theme-thumb{transition:none!important}}

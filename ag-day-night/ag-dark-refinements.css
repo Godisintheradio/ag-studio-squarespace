@@ -24,6 +24,6 @@ html[data-ag-theme="dark"] .sqs-block-form :is(.title,.description,.caption,.fie
 }
 /* Native editorial text inside sections switched to Squarespace black-bold.
    Excludes custom Code Blocks and links/buttons to preserve custom styling. */
-html[data-ag-theme="dark"] .page-section[data-section-theme="black-bold"] .sqs-block:not(.sqs-block-code):not(.sqs-block-form) :is(h1,h2,h3,h4,h5,h6,p,li,blockquote){
+html[data-ag-theme="dark"] .page-section[data-section-theme="black-bold"] .sqs-block:not(.sqs-block-code):not(.sqs-block-form) :is(p,li,blockquote){
  color:var(--ag-dark-ink);
 }

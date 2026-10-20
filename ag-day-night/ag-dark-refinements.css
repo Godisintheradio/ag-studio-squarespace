@@ -112,9 +112,9 @@ html[data-ag-theme="dark"] .sqs-shape-block-container[data-shape-name="rectangle
  }
 }
 
-/* 0.1.8 — soft ivory outline on dark rectangle Shape Blocks */
+/* 0.1.8 — subtle dark outline on dark rectangle Shape Blocks */
 html[data-ag-theme="dark"] .sqs-shape-block-container[data-shape-name="rectangle"] svg.sqs-shape-rectangle > path{
- stroke:rgba(245,243,238,.65)!important;
+ stroke:#080B0D!important;
  stroke-width:1.5px!important;
  stroke-linejoin:round;
  vector-effect:non-scaling-stroke;

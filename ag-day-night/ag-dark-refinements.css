@@ -47,3 +47,30 @@ html[data-ag-theme="dark"] .sqs-block-form.sqs-background-enabled::before{
   transition:background-color .75s ease;
  }
 }
+
+/* 0.1.5 — Native Squarespace HTML blocks use a custom CSS property for their
+   surface. Override that token rather than painting a square overlay. */
+html[data-ag-theme="dark"] .sqs-block-html.sqs-background-enabled{
+ --tweak-text-block-background-color:#14191B!important;
+ background-color:#14191B!important;
+}
+html[data-ag-theme="dark"] .sqs-block-html.sqs-background-enabled .sqs-html-content{
+ color:#F5F3EE;
+}
+html[data-ag-theme="dark"] .sqs-block-html.sqs-background-enabled
+ .sqsrte-text-color--darkAccent{
+ color:#F5F3EE!important;
+}
+/* Custom contact-routes surface — scoped to this component only. */
+html[data-ag-theme="dark"] .ag-contact-routes{
+ background-color:#14191B!important;
+ color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] .ag-contact-routes :is(p,li,span){
+ color:inherit;
+}
+@media(prefers-reduced-motion:no-preference){
+ html[data-ag-theme] :is(.sqs-block-html.sqs-background-enabled,.ag-contact-routes){
+ transition:background-color .75s ease,color .75s ease;
+ }
+}

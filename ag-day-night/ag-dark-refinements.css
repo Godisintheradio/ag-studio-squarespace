@@ -1,7 +1,7 @@
-/* AG Studio | Dark refinements 0.1.3 — native Squarespace forms and text
+/* AG Studio | Dark refinements 0.1.4 — native Squarespace forms and text
    Pilot; avoids images, code blocks, header and buttons.
-   Gunmetal: #30383C. Preserve native form corners. */
-:root { --ag-sideral-black:#30383C; --ag-dark-ink:#F5F3EE; --ag-dark-muted:#BCC8C3; }
+   Near-black: #14191B. Preserve native form corners. */
+:root { --ag-sideral-black:#14191B; --ag-dark-ink:#F5F3EE; --ag-dark-muted:#BCC8C3; }
 @media (prefers-reduced-motion:no-preference){
  html[data-ag-theme="dark"] .sqs-block-form :is(input,textarea,select) {
   transition:background-color .75s ease,color .75s ease,border-color .75s ease;

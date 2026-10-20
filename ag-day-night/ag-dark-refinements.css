@@ -1,7 +1,7 @@
 /* AG Studio | Dark refinements 0.1.4 — native Squarespace forms and text
    Pilot; avoids images, code blocks, header and buttons.
-   Near-black: #14191B. Preserve native form corners. */
-:root { --ag-sideral-black:#14191B; --ag-dark-ink:#F5F3EE; --ag-dark-muted:#BCC8C3; }
+   Near-black: #000000. Preserve native form corners. */
+:root { --ag-sideral-black:#000000; --ag-dark-ink:#F5F3EE; --ag-dark-muted:#BCC8C3; }
 @media (prefers-reduced-motion:no-preference){
  html[data-ag-theme="dark"] .sqs-block-form :is(input,textarea,select) {
   transition:background-color .75s ease,color .75s ease,border-color .75s ease;
@@ -51,8 +51,8 @@ html[data-ag-theme="dark"] .sqs-block-form.sqs-background-enabled::before{
 /* 0.1.5 — Native Squarespace HTML blocks use a custom CSS property for their
    surface. Override that token rather than painting a square overlay. */
 html[data-ag-theme="dark"] .sqs-block-html.sqs-background-enabled{
- --tweak-text-block-background-color:#14191B!important;
- background-color:#14191B!important;
+ --tweak-text-block-background-color:#000000!important;
+ background-color:#000000!important;
 }
 html[data-ag-theme="dark"] .sqs-block-html.sqs-background-enabled .sqs-html-content{
  color:#F5F3EE;
@@ -63,7 +63,7 @@ html[data-ag-theme="dark"] .sqs-block-html.sqs-background-enabled
 }
 /* Custom contact-routes surface — scoped to this component only. */
 html[data-ag-theme="dark"] .ag-contact-routes{
- background-color:#14191B!important;
+ background-color:#000000!important;
  color:#F5F3EE!important;
 }
 html[data-ag-theme="dark"] .ag-contact-routes :is(p,li,span){
@@ -78,7 +78,7 @@ html[data-ag-theme="dark"] .ag-contact-routes :is(p,li,span){
 /* 0.1.6 — Contact route cards (the actual painted surfaces are anchors).
    Keep the original grid, hover movement, border-radius and day palette. */
 html[data-ag-theme="dark"] .ag-contact-routes > .ag-contact-route{
- background:#14191B!important;
+ background:#000000!important;
  border-color:#384741!important;
  color:#F5F3EE!important;
  transition:transform .2s ease,border-color .2s ease,background-color .75s ease,color .75s ease;
@@ -104,7 +104,7 @@ html[data-ag-theme="dark"] .ag-contact-route:hover{
    Paint the SVG path rather than its transparent wrapper.
    The existing SVG path preserves all four 16px corners. */
 html[data-ag-theme="dark"] .sqs-shape-block-container[data-shape-name="rectangle"] svg.sqs-shape-rectangle > path{
- fill:#14191B!important;
+ fill:#000000!important;
 }
 @media(prefers-reduced-motion:no-preference){
  html[data-ag-theme] .sqs-shape-block-container[data-shape-name="rectangle"] svg.sqs-shape-rectangle > path{

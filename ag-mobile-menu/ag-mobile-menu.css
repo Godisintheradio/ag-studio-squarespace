@@ -147,3 +147,29 @@
  #agmm .agmm-head,#agmm .agmm-group,#agmm .agmm-theme-icon,
  #agmm .agmm-theme-track,#agmm .agmm-theme-thumb{transition:none!important}
 }
+
+/* 0.1.7 — unified menu surface and ink from the same global theme state.
+   Explicit fallbacks guarantee readable text with Squarespace custom sections. */
+#agmm{
+ --agmm-mode-surface:#F5F3EE;
+ --agmm-live-ink:#15201B;
+ --agmm-secondary-ink:#46544D;
+ --agmm-theme-line:rgba(21,32,27,.24);
+}
+html[data-ag-theme="dark"] #agmm{
+ --agmm-mode-surface:#0E1715;
+ --agmm-live-ink:#F5F3EE;
+ --agmm-secondary-ink:#AFC2B8;
+ --agmm-theme-line:rgba(245,243,238,.22);
+}
+#agmm .agmm-panel{background-color:var(--agmm-mode-surface)!important}
+#agmm .agmm-brand,#agmm .agmm-brand:link,#agmm .agmm-brand:visited,
+#agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action,
+#agmm .agmm-children a,#agmm .agmm-close,#agmm .agmm-cta,
+#agmm .agmm-theme-switch,#agmm .agmm-theme-icon{
+ color:var(--agmm-live-ink)!important;
+}
+#agmm .agmm-children a{color:var(--agmm-secondary-ink)!important}
+#agmm .agmm-brand{color:var(--agmm-live-ink)!important}
+#agmm .agmm-head,#agmm .agmm-group{border-color:var(--agmm-theme-line)!important}
+#agmm .agmm-cta{border-color:var(--agmm-live-ink)!important}

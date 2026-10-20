@@ -1,10 +1,29 @@
 /* AG Studio | Code Block surfaces 0.1.0
    Separate from the functioning day/night toggle. */
 html[data-ag-theme="dark"] .sqs-block-code .ag-code-white-surface{
-  background:#000000!important;
-  background-color:#000000!important;
+  background:#14191B!important;
+  background-color:#14191B!important;
   color:#F5F3EE;
 }
 html[data-ag-theme="dark"] .sqs-block-code .ag-code-white-surface:where(div,section,article,main,aside,header,footer) :is(h1,h2,h3,h4,h5,h6,p,li){
   color:inherit;
+}
+
+/* 0.1.1 — page-specific nested Code Block surfaces found in Assistance HTML.
+   Pale custom blocks are not white, so the automatic white scanner skips them. */
+html[data-ag-theme="dark"] .sqs-block-code .ag-method-step,
+html[data-ag-theme="dark"] .sqs-block-code .ag-assistenza-prezzi .ag-notice{
+ background-color:#14191B!important;
+ color:#F5F3EE!important;
+ border-color:rgba(245,243,238,.25)!important;
+}
+html[data-ag-theme="dark"] .sqs-block-code .ag-assistenza-prezzi :is(h3,p),
+html[data-ag-theme="dark"] .sqs-block-code .ag-assistenza-prezzi .ag-notice,
+html[data-ag-theme="dark"] .sqs-block-code .ag-method-step :is(h3,p){
+ color:#F5F3EE!important;
+}
+@media(prefers-reduced-motion:no-preference){
+ html[data-ag-theme] .sqs-block-code :is(.ag-method-step,.ag-notice){
+ transition:background-color .75s ease,color .75s ease,border-color .75s ease;
+ }
 }

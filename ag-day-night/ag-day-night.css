@@ -1,0 +1,32 @@
+/* AG Studio — Day/Night toggle, pilot 0.1.0
+   Works alongside native Squarespace 7.1 theme classes.
+   The existing #agmm menu is intentionally excluded. */
+:root{--ag-theme-accent:#E0A66B;--ag-theme-dark-bg:#0E1715;--ag-theme-dark-text:#F5F3EE}
+#ag-theme-switch{
+ position:fixed;right:clamp(14px,2vw,28px);bottom:calc(18px + env(safe-area-inset-bottom));
+ z-index:2147482500;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ width:50px;height:50px;border:1px solid rgba(224,166,107,.65);border-radius:50%;
+ background:#0E1715;color:#F5F3EE;box-shadow:0 8px 24px rgba(0,0,0,.18);
+ cursor:pointer;transition:transform .22s ease,background-color .25s ease,border-color .25s ease;
+}
+#ag-theme-switch:hover{transform:translateY(-2px);border-color:#E0A66B}
+#ag-theme-switch:active{transform:scale(.91)}
+#ag-theme-switch:focus-visible{outline:2px solid #E0A66B;outline-offset:4px}
+#ag-theme-switch svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.65}
+#ag-theme-switch .ag-sun,#ag-theme-switch .ag-moon{display:none}
+html[data-ag-theme="light"] #ag-theme-switch .ag-moon{display:block}
+html[data-ag-theme="dark"] #ag-theme-switch .ag-sun{display:block}
+html[data-ag-theme="dark"] #ag-theme-switch{background:#F5F3EE;color:#0E1715}
+/* Header color variables used by Squarespace header in most 7.1 layouts */
+html[data-ag-theme="dark"] #header:not(.transparent-header),
+html[data-ag-theme="dark"] .header:not(.transparent-header){
+ --headerBackgroundColor:#0E1715;--headerNavigationColor:#F5F3EE;
+ --headerLinkColor:#F5F3EE;--headerButtonTextColor:#F5F3EE;
+}
+html[data-ag-theme="dark"] #header:not(.transparent-header) .header-title-text a,
+html[data-ag-theme="dark"] #header:not(.transparent-header) .header-nav a,
+html[data-ag-theme="dark"] #header:not(.transparent-header) .header-actions a:not(.sqs-button-element){
+ color:#F5F3EE;
+}
+@media(prefers-reduced-motion:reduce){#ag-theme-switch{transition:none}}
+/* Safety: switch sits below #agmm overlay when the mobile menu opens */

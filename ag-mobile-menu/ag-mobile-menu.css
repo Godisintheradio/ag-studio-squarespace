@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.0 */
+/* AG Mobile Menu 7.1 — beta 0.1.2 */
 #agmm[hidden],#agmm [hidden]{display:none!important}
 #agmm{--agmm-bg:#f9f9f6;--agmm-ink:#252b29;--agmm-muted:#68716e;--agmm-line:#dce0dd;position:fixed;inset:0;z-index:2147483000;opacity:0;pointer-events:none;transition:opacity .28s ease;background:rgba(18,26,23,.42);font-family:Inter,Manrope,Arial,sans-serif;color:var(--agmm-ink)}
 #agmm.agmm-open{opacity:1;pointer-events:auto}
@@ -49,3 +49,22 @@
 .header-burger-btn{transition:transform .22s cubic-bezier(.22,.61,.36,1)}
 .header-burger-btn:active{transform:scale(.86) rotate(8deg)}
 @media(prefers-reduced-motion:reduce){.header-burger-btn{transition:none!important}}
+
+/* Beta 0.1.2 — campionamento dal footer reale: #0E1715, #24473F, #F5F3EE */
+#agmm{
+ --agmm-bg:#0E1715;
+ --agmm-ink:#F5F3EE;
+ --agmm-muted:#24473F;
+ --agmm-line:#24473F;
+ --agmm-accent:#24473F;
+}
+#agmm .agmm-panel{background:#0E1715}
+#agmm .agmm-brand{color:#24473F!important;font-weight:700}
+#agmm .agmm-head{border-bottom-color:#24473F}
+#agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action{color:#F5F3EE!important}
+#agmm .agmm-children a{color:#88A39A!important}
+#agmm .agmm-icon[aria-expanded="true"]{color:#88A39A!important}
+#agmm .agmm-cta{color:#F5F3EE!important;border-color:#F5F3EE}
+#agmm .agmm-cta:hover,#agmm .agmm-cta:focus-visible{border-color:#88A39A;background:rgba(36,71,63,.20)}
+#agmm a:focus-visible,#agmm button:focus-visible{outline-color:#88A39A}
+#agmm .agmm-brand img{display:block;max-width:min(66vw,230px);max-height:46px;width:auto;height:auto;object-fit:contain}

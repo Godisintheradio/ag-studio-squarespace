@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.5. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.6. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -51,7 +51,7 @@ function build(){
  const secondary=document.createElement('div');secondary.className='agmm-secondary';
  const utilities=document.createElement('div');utilities.className='agmm-utilities';
  const themeButton=document.createElement('button');themeButton.type='button';themeButton.className='agmm-theme-switch';themeButton.setAttribute('role','switch');
- themeButton.innerHTML='<span class="agmm-theme-icon" aria-hidden="true">☀</span><span class="agmm-theme-track" aria-hidden="true"><span class="agmm-theme-thumb"><span class="agmm-thumb-sun">☀</span><span class="agmm-thumb-moon">☾</span></span></span><span class="agmm-theme-icon" aria-hidden="true">☾</span>';
+ themeButton.innerHTML='<span class="agmm-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></span><span class="agmm-theme-track" aria-hidden="true"><span class="agmm-theme-thumb"><span class="agmm-thumb-sun"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></span><span class="agmm-thumb-moon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.7 13.2A8.7 8.7 0 0 1 10.8 3.3a8.7 8.7 0 1 0 9.9 9.9Z"/></svg></span></span></span><span class="agmm-theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.7 13.2A8.7 8.7 0 0 1 10.8 3.3a8.7 8.7 0 1 0 9.9 9.9Z"/></svg></span>';
  function syncTheme(){const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';themeButton.setAttribute('aria-checked',String(dark));themeButton.setAttribute('aria-label',dark?'Attiva modalità giorno':'Attiva modalità notte');}
  syncTheme();
  themeButton.addEventListener('click',()=>{const nativeSwitch=document.getElementById('ag-theme-switch');if(nativeSwitch){nativeSwitch.click();syncTheme();syncMenuPalette()}});
@@ -65,20 +65,18 @@ function build(){
 }
 function syncMenuPalette(){
  if(!overlay)return;
+ // Resolve light/dark foreground from the global mode, not a potentially
+ // transparent section background. The panel samples the live section color.
+ const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
+ overlay.dataset.agmmContrast=dark?'dark':'light';
  const section=document.querySelector('main .page-section, #page .page-section, .page-section');
  if(!section)return;
  const candidates=[section.querySelector('.section-background'),section.querySelector('.section-background-content'),section].filter(Boolean);
- const visibleColor=value=>value && value!=='transparent' && !/rgba?\\([^)]*,\\s*0\\s*\\)/.test(value);
+ function opaque(value){return value && value!=='transparent' && value!=='rgba(0, 0, 0, 0)' && value!=='#0000'}
  let color='';
- for(const el of candidates){const value=getComputedStyle(el).backgroundColor;if(visibleColor(value)){color=value;break}}
- if(!color)return;
- overlay.style.setProperty('--agmm-live-bg',color);
- const channels=color.match(/[\\d.]+/g);
- if(channels&&channels.length>=3){
-  const [r,g,b]=channels.map(Number);
-  const light=(r*.2126+g*.7152+b*.0722)>145;
-  overlay.dataset.agmmContrast=light?'light':'dark';
- }
+ for(const el of candidates){const value=getComputedStyle(el).backgroundColor;if(opaque(value)){color=value;break}}
+ if(color)overlay.style.setProperty('--agmm-live-bg',color);
+ else overlay.style.removeProperty('--agmm-live-bg');
 }
 function setup(){
  if(document.getElementById(ID))return;

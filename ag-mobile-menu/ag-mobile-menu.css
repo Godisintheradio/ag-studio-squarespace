@@ -1,0 +1,25 @@
+/* AG Mobile Menu 7.1 — beta 0.1.0 */
+#agmm[hidden],#agmm [hidden]{display:none!important}
+#agmm{--agmm-bg:#f9f9f6;--agmm-ink:#252b29;--agmm-muted:#68716e;--agmm-line:#dce0dd;position:fixed;inset:0;z-index:2147483000;opacity:0;pointer-events:none;transition:opacity .28s ease;background:rgba(18,26,23,.42);font-family:Inter,Manrope,Arial,sans-serif;color:var(--agmm-ink)}
+#agmm.agmm-open{opacity:1;pointer-events:auto}
+#agmm,#agmm *{box-sizing:border-box}
+#agmm .agmm-panel{position:absolute;inset:0 auto 0 0;width:min(90vw,430px);display:flex;flex-direction:column;background:var(--agmm-bg);box-shadow:12px 0 30px #0002;transform:translateX(-102%);transition:transform .32s cubic-bezier(.22,.61,.36,1)}
+#agmm.agmm-open .agmm-panel{transform:translateX(0)}
+#agmm .agmm-head{min-height:82px;padding:17px 22px;border-bottom:1px solid var(--agmm-line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+#agmm .agmm-brand{display:flex;align-items:center;text-decoration:none!important;color:inherit!important;font-size:18px;font-weight:700;letter-spacing:-.02em;min-width:0}
+#agmm .agmm-brand img{max-height:42px;max-width:180px;object-fit:contain}
+#agmm .agmm-close{display:grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:inherit;cursor:pointer;font-size:29px;font-family:inherit}
+#agmm .agmm-body{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:24px 22px max(32px,env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
+#agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action{color:inherit!important;text-decoration:none!important;background:none;border:0;font:inherit;text-align:left;cursor:pointer}
+#agmm .agmm-group{border-bottom:1px solid var(--agmm-line)}
+#agmm .agmm-row{display:flex;align-items:center;min-height:64px}
+#agmm .agmm-link,#agmm .agmm-toggle{display:flex;align-items:center;min-height:60px;padding:13px 0;font-size:19px;font-weight:600;letter-spacing:-.025em;line-height:1.3}
+#agmm .agmm-row>.agmm-link,#agmm .agmm-row>.agmm-toggle.agmm-label{flex:1}
+#agmm .agmm-toggle.agmm-icon{min-width:45px;justify-content:center;font-size:23px}
+#agmm .agmm-children{list-style:none;margin:0;padding:0 0 17px 18px}
+#agmm .agmm-children a{display:block;padding:10px 0;color:var(--agmm-muted)!important;text-decoration:none!important;font-size:15px;line-height:1.5}
+#agmm .agmm-secondary{padding-top:27px;display:flex;flex-direction:column;gap:12px}
+#agmm .agmm-action{padding:12px 0;font-size:15px}
+#agmm .agmm-cta{display:block;background:var(--agmm-ink);border:1px solid var(--agmm-ink);color:var(--agmm-bg)!important;text-decoration:none!important;text-align:center;padding:15px 22px;font-size:15px;font-weight:600;border-radius:3px}
+#agmm a:focus-visible,#agmm button:focus-visible{outline:2px solid var(--agmm-ink);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){#agmm,#agmm .agmm-panel{transition:none!important}}

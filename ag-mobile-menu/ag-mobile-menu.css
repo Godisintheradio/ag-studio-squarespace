@@ -104,3 +104,46 @@
 #agmm .agmm-close,#agmm .agmm-theme-switch{color:var(--agmm-live-ink,var(--agmm-ink))}
 #agmm .agmm-head,#agmm .agmm-group{border-color:var(--agmm-line)}
 #agmm .agmm-cta{border-color:currentColor}
+
+/* 0.1.6 — smooth theme transition, explicit contrast and Lucide-style SVG icons */
+#agmm{
+ --agmm-live-ink:#15201B;
+ --agmm-secondary-ink:#46544D;
+ --agmm-theme-line:rgba(21,32,27,.24);
+}
+#agmm[data-agmm-contrast="dark"]{
+ --agmm-live-ink:#F5F3EE;
+ --agmm-secondary-ink:#AFC2B8;
+ --agmm-theme-line:rgba(245,243,238,.22);
+}
+#agmm .agmm-panel{
+ transition:transform .32s cubic-bezier(.22,.61,.36,1),background-color .75s ease,color .75s ease;
+}
+#agmm .agmm-brand,#agmm .agmm-brand:link,#agmm .agmm-brand:visited,
+#agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action,
+#agmm .agmm-close,#agmm .agmm-cta,#agmm .agmm-children a,
+#agmm .agmm-theme-switch{
+ color:var(--agmm-live-ink)!important;
+ transition:color .75s ease,border-color .75s ease,background-color .75s ease;
+}
+#agmm .agmm-children a{color:var(--agmm-secondary-ink)!important}
+#agmm .agmm-brand img{transition:filter .75s ease}
+#agmm .agmm-head,#agmm .agmm-group{border-color:var(--agmm-theme-line);transition:border-color .75s ease}
+#agmm .agmm-cta{border-color:var(--agmm-live-ink)}
+#agmm .agmm-cta:hover{border-color:#E0A66B}
+#agmm .agmm-theme-icon{display:grid;place-items:center;color:var(--agmm-live-ink);opacity:.75;transition:color .75s ease}
+#agmm .agmm-theme-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#agmm .agmm-theme-thumb span{display:grid;place-items:center}
+#agmm .agmm-theme-thumb svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#agmm .agmm-theme-switch .agmm-thumb-moon{display:none}
+#agmm .agmm-theme-switch[aria-checked="true"] .agmm-thumb-sun{display:none}
+#agmm .agmm-theme-switch[aria-checked="true"] .agmm-thumb-moon{display:grid}
+#agmm .agmm-theme-track{transition:background-color .75s ease}
+#agmm .agmm-theme-thumb{transition:transform .75s cubic-bezier(.22,.61,.36,1),background-color .75s ease,color .75s ease}
+@media(prefers-reduced-motion:reduce){
+ #agmm .agmm-panel,#agmm .agmm-brand,#agmm .agmm-brand img,
+ #agmm .agmm-link,#agmm .agmm-toggle,#agmm .agmm-action,#agmm .agmm-close,
+ #agmm .agmm-cta,#agmm .agmm-children a,#agmm .agmm-theme-switch,
+ #agmm .agmm-head,#agmm .agmm-group,#agmm .agmm-theme-icon,
+ #agmm .agmm-theme-track,#agmm .agmm-theme-thumb{transition:none!important}
+}

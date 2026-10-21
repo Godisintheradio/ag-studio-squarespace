@@ -35,7 +35,7 @@ html[data-ag-theme="dark"] .agpf {
 
 /* AG Studio — centered filter toolbar with introductory label */
 .agpf {
-  justify-content: center;
+  justify-content: left;
   text-align: center;
   margin-top: 22px;
   margin-bottom: 38px;

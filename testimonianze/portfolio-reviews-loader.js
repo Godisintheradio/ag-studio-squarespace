@@ -7,7 +7,7 @@
   const reviews = [
     { name: "Pellegrino C.", text: "Un partner del quale certamente non ne faremo più a meno.", detail: "KERAPHO · Progetto web e collaborazione continuativa" },
     { name: "Studio Rosiello", text: "Strabiliante. Oltre l’aspettativa, mi ha davvero sorpreso nella creazione del brand. Complimenti.", detail: "Creazione del brand" },
-    { name: "Annamaria P.", text: "La professionalità, la precisione e l'accuratezza per il lavoro sono le caratteristiche prevalenti dell'attività di Antonio Giardiello.", detail: "Rinnovamento dell'immagine aziendale" }
+    { name: "Fantasy Fiori", text: "La professionalità, la precisione e l'accuratezza per il lavoro sono le caratteristiche prevalenti dell'attività di Antonio Giardiello.", detail: "Rinnovamento dell'immagine aziendale" }
   ];
   const host = document.createElement("section");
   host.className = "ag-reviews";

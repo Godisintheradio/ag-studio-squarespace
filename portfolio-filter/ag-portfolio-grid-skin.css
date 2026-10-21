@@ -1,0 +1,63 @@
+/* AG Studio Portfolio — visual skin for native Squarespace 7.1 Grid Basic.
+   Does NOT override column count, aspect ratio, grid gaps or card spacing. */
+body:has(#gridThumbs.portfolio-grid-basic) #gridThumbs.portfolio-grid-basic {
+  --ag-card-title: #192925;
+  --ag-card-border: rgba(36, 71, 63, .14);
+  --ag-card-arrow: #a56b37;
+}
+html[data-ag-theme="dark"] body:has(#gridThumbs.portfolio-grid-basic) #gridThumbs.portfolio-grid-basic {
+  --ag-card-title: #f5f3ee;
+  --ag-card-border: rgba(245, 243, 238, .19);
+  --ag-card-arrow: #e0a66b;
+}
+/* Respect the native grid/card sizing settings */
+#gridThumbs.portfolio-grid-basic > a.grid-item {
+  color: var(--ag-card-title);
+  text-decoration: none;
+  min-width: 0;
+}
+/* Visual treatment only: native image wrapper retains its dimensions and ratio */
+#gridThumbs.portfolio-grid-basic > a.grid-item .grid-image {
+  border-radius: 12px;
+  overflow: hidden;
+  outline: 1px solid var(--ag-card-border);
+  outline-offset: -1px;
+  transition: box-shadow .24s ease, transform .24s ease;
+}
+#gridThumbs.portfolio-grid-basic > a.grid-item .portfolio-title {
+  color: var(--ag-card-title) !important;
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-size: clamp(16px, 1.55vw, 21px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.035em;
+  text-decoration: none !important;
+  overflow-wrap: anywhere;
+}
+#gridThumbs.portfolio-grid-basic > a.grid-item .portfolio-title::after {
+  content: "↗";
+  display: inline-block;
+  color: var(--ag-card-arrow);
+  font-family: 'Inter', sans-serif;
+  font-size: .82em;
+  font-weight: 500;
+  padding-left: .35em;
+  transition: transform .24s ease;
+}
+@media (hover: hover) {
+  #gridThumbs.portfolio-grid-basic > a.grid-item:hover .grid-image {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(10, 30, 25, .12);
+  }
+  #gridThumbs.portfolio-grid-basic > a.grid-item:hover .portfolio-title::after {
+    transform: translate(3px, -3px);
+  }
+}
+#gridThumbs.portfolio-grid-basic > a.grid-item:focus-visible {
+  outline: 2px solid #e0a66b;
+  outline-offset: 5px;
+}
+@media (prefers-reduced-motion: reduce) {
+  #gridThumbs.portfolio-grid-basic > a.grid-item .grid-image,
+  #gridThumbs.portfolio-grid-basic > a.grid-item .portfolio-title::after { transition: none; }
+}

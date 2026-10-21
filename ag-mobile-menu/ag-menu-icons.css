@@ -1,0 +1,8 @@
+/* AG Studio Navigation Icons 7.1 — decoration only */
+.header-nav-list .ag-icon-label,#agmm .ag-icon-label{display:inline-flex!important;align-items:center;gap:.65em;vertical-align:middle}
+.header-nav-list .ag-nav-icon,#agmm .ag-nav-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 20px;width:20px;height:20px;color:#7b8580}
+.header-nav-list .ag-nav-icon svg,#agmm .ag-nav-icon svg{display:block;width:20px;height:20px}
+#agmm .ag-nav-icon{color:#88A39A}
+#agmm .agmm-label.ag-icon-label{justify-content:flex-start}
+#agmm .agmm-children .ag-nav-icon{width:17px;height:17px;flex-basis:17px}
+#agmm .agmm-children .ag-nav-icon svg{width:17px;height:17px}

@@ -6,3 +6,20 @@
 #agmm .agmm-label.ag-icon-label{justify-content:flex-start}
 #agmm .agmm-children .ag-nav-icon{width:17px;height:17px;flex-basis:17px}
 #agmm .agmm-children .ag-nav-icon svg{width:17px;height:17px}
+
+/* Desktop dropdown finishing: left-flag alignment and warmer ivory panel */
+@media (min-width: 768px) {
+  .header-nav .header-nav-folder-content {
+    background-color: #F0EDE5 !important;
+    text-align: left !important;
+  }
+  .header-nav .header-nav-folder-item,
+  .header-nav .header-nav-folder-item a,
+  .header-nav .header-nav-folder-content .ag-icon-label {
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  .header-nav .header-nav-folder-item a {
+    width: 100%;
+  }
+}

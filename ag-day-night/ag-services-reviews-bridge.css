@@ -1,0 +1,68 @@
+/* AG Studio — Servizi + Testimonianze | day/night bridge v1.0
+ * Uses the existing html[data-ag-theme="dark"] switch.
+ * Does not change the daylight appearance, layout or day/night JavaScript.
+ */
+html[data-ag-theme="dark"] .ag-services-grid > .ag-service-card {
+  background:#14191B!important;
+  border-color:#384741!important;
+  color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] .ag-services-grid > .ag-service-card.ag-service-card--featured,
+html[data-ag-theme="dark"] .ag-services-grid > .ag-service-card.ag-service-card--collab {
+  background:#202D29!important;
+  border-color:#4A6558!important;
+}
+html[data-ag-theme="dark"] .ag-services-grid .ag-service-card :is(h3,.ag-service-num,.ag-service-arrow,.ag-service-go) {
+  color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] .ag-services-grid .ag-service-card p {
+  color:#BCC8C3!important;
+}
+html[data-ag-theme="dark"] .ag-services-grid > .ag-service-card:hover {
+  border-color:#E0A66B!important;
+}
+html[data-ag-theme="dark"] .ag-reviews {
+  --agr-bg:#14191B;
+  --agr-text:#F5F3EE;
+  --agr-soft:#E0A66B;
+  --agr-muted:#BCC8C3;
+  --agr-line:#394340;
+  --agr-avatar:#273430;
+  background:#14191B!important;
+  color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] .ag-reviews :is(.ag-reviews__quote blockquote,.ag-reviews__byline strong,.ag-reviews__button) {
+  color:#F5F3EE!important;
+}
+html[data-ag-theme="dark"] .ag-reviews :is(.ag-reviews__top,.ag-reviews__mark,.ag-reviews__source) {
+  color:#E0A66B!important;
+}
+html[data-ag-theme="dark"] .ag-reviews :is(.ag-reviews__byline small,.ag-reviews__counter) {
+  color:#BCC8C3!important;
+}
+html[data-ag-theme="dark"] .ag-reviews .ag-reviews__foot {
+  border-color:#394340!important;
+}
+html[data-ag-theme="dark"] .ag-reviews .ag-reviews__avatar {
+  background:#273430!important;
+  color:#E0A66B!important;
+}
+html[data-ag-theme="dark"] .ag-reviews .ag-reviews__button {
+  border-color:#394340!important;
+  background:transparent!important;
+}
+html[data-ag-theme="dark"] .ag-reviews .ag-reviews__button:hover {
+  background:#273430!important;
+}
+@media(prefers-reduced-motion:no-preference){
+  html[data-ag-theme] .ag-services-grid > .ag-service-card{
+    transition:transform .2s ease,border-color .2s ease,background-color .75s ease,color .75s ease;
+  }
+  html[data-ag-theme] .ag-reviews{
+    transition:background-color .75s ease,color .75s ease;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-ag-theme="dark"] .ag-services-grid > .ag-service-card,
+  html[data-ag-theme="dark"] .ag-reviews {transition:none!important}
+}

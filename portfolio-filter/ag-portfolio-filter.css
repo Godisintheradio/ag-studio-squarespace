@@ -32,3 +32,27 @@ html[data-ag-theme="dark"] .agpf {
   .agpf__button { transition: none; }
   .agpf__button:hover { transform: none; }
 }
+
+/* AG Studio — centered filter toolbar with introductory label */
+.agpf {
+  justify-content: center;
+  text-align: center;
+  margin-top: 22px;
+  margin-bottom: 38px;
+}
+.agpf::before {
+  content: "ESPLORA PER CATEGORIA";
+  display: block;
+  flex: 0 0 100%;
+  color: var(--agpf-ink);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+@media (max-width: 640px) {
+  .agpf { gap: 8px; margin-bottom: 28px; }
+  .agpf__button { padding: 9px 14px; }
+}

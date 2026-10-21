@@ -23,3 +23,16 @@
     width: 100%;
   }
 }
+
+/* Modalità notte AG Studio — desktop dropdown */
+@media (min-width: 768px) {
+  :is(html, body).dark .header-nav .header-nav-folder-content,
+  :is(html, body).dark-mode .header-nav .header-nav-folder-content,
+  :is(html, body).ag-dark .header-nav .header-nav-folder-content,
+  :is(html, body).ag-dark-mode .header-nav .header-nav-folder-content,
+  :is(html, body)[data-theme="dark"] .header-nav .header-nav-folder-content,
+  :is(html, body)[data-color-mode="dark"] .header-nav .header-nav-folder-content,
+  :is(html, body)[data-ag-theme="dark"] .header-nav .header-nav-folder-content {
+    background-color: #14191B !important;
+  }
+}

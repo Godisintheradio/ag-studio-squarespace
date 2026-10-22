@@ -74,3 +74,11 @@ html[data-ag-theme="dark"] body:has(#gridThumbs.portfolio-grid-basic) #gridThumb
   #gridThumbs.portfolio-grid-basic > a.grid-item .grid-image,
   #gridThumbs.portfolio-grid-basic > a.grid-item .portfolio-title::after { transition: none; }
 }
+
+/* AG Studio Portfolio — two project cards per row on phones.
+   Do not alter Squarespace's image aspect ratio or spacing controls. */
+@media screen and (max-width: 767px) {
+  #gridThumbs.portfolio-grid-basic {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}

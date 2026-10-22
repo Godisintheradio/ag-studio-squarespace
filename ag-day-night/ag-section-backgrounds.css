@@ -1,0 +1,63 @@
+/* =========================================================
+   AG STUDIO — DAY / NIGHT
+   Section Backgrounds v1.0
+   Squarespace 7.1
+   =========================================================
+   Scope: section-level background images/videos only.
+   Day mode remains unchanged.
+   Dark mode switch: html[data-ag-theme="dark"]
+   IMPORTANT: CSS hides media visually; it does not
+   guarantee stopping video playback or downloads.
+   ========================================================= */
+
+/* 01 — Standard sections: uniform dark background */
+html[data-ag-theme="dark"] .page-section {
+  background-color: #14191B !important;
+}
+
+html[data-ag-theme="dark"] .page-section .section-background {
+  background-image: none !important;
+  background-color: #14191B !important;
+}
+
+html[data-ag-theme="dark"] .page-section .section-background img,
+html[data-ag-theme="dark"] .page-section .section-background video,
+html[data-ag-theme="dark"] .page-section .section-background iframe {
+  display: none !important;
+}
+
+html[data-ag-theme="dark"] .page-section .section-background [style*="background-image"] {
+  background-image: none !important;
+}
+
+html[data-ag-theme="dark"] .page-section .section-background-overlay {
+  background: transparent !important;
+}
+
+/* 02 — Full-bleed sections: Squarespace media layers */
+html[data-ag-theme="dark"] #page-regions .page-section.full-bleed-section,
+html[data-ag-theme="dark"] #page-regions .page-section.full-bleed-section .section-background {
+  background: #14191B !important;
+  background-image: none !important;
+}
+
+html[data-ag-theme="dark"] #page-regions .page-section.full-bleed-section
+.section-background :is(
+  img,
+  picture,
+  video,
+  iframe,
+  .section-background-content,
+  .sqs-video-background
+) {
+  visibility: hidden !important;
+}
+
+html[data-ag-theme="dark"] #page-regions .page-section.full-bleed-section .section-background::before,
+html[data-ag-theme="dark"] #page-regions .page-section.full-bleed-section .section-background::after {
+  content: none !important;
+}
+
+html[data-ag-theme="dark"] #page-regions .page-section.full-bleed-section .section-background-overlay {
+  background: transparent !important;
+}

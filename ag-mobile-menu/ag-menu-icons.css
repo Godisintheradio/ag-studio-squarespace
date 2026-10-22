@@ -36,3 +36,10 @@
     background-color: #14191B !important;
   }
 }
+
+/* Account: stessa tipografia, riga e icona delle voci principali */
+#agmm .agmm-secondary{gap:0}
+#agmm .agmm-action{display:flex;align-items:center;gap:.65em;width:100%;min-height:64px;padding:13px 0;text-align:left;font-size:19px;font-weight:600;letter-spacing:-.025em;line-height:1.3;border-bottom:1px solid var(--agmm-line)}
+#agmm .agmm-secondary .agmm-cta{margin-top:18px}
+.header-actions .user-accounts-link a.ag-icon-label,
+.header-nav .user-accounts-link a.ag-icon-label{display:inline-flex!important;align-items:center;gap:.65em}

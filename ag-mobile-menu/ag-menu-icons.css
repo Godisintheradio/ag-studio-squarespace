@@ -43,3 +43,12 @@
 #agmm .agmm-secondary .agmm-cta{margin-top:18px}
 .header-actions .user-accounts-link a.ag-icon-label,
 .header-nav .user-accounts-link a.ag-icon-label{display:inline-flex!important;align-items:center;gap:.65em}
+
+/* Desktop — maggiore respiro tra le voci della tendina Servizi */
+@media (min-width: 768px) {
+  .header-nav .header-nav-folder-content .header-nav-folder-item a {
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+    line-height: 1.55;
+  }
+}

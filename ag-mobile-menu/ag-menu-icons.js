@@ -28,6 +28,7 @@ const rules=[
 [/portfolio|progetti|casi studio/,'briefcase'],
 [/guide|blog|articoli/,'book'],
 [/chi sono|about|studio/,'user'],
+[/account|accedi|accesso|area riservata|profilo/,'user'],
 [/contatti|contattami|richiedi/,'mail'],
 [/brand|grafica|creative/,'sparkles'],
 [/servizi/,'layers']
@@ -42,7 +43,7 @@ function decorate(el){
  el.dataset.agIconReady='1';el.classList.add('ag-icon-label');el.prepend(svg(key));
 }
 function run(){
- document.querySelectorAll('.header-nav-list .header-nav-item a, .header-nav-list .header-nav-item--folder .header-nav-folder-title, #agmm .agmm-row > .agmm-link, #agmm .agmm-row > .agmm-label, #agmm .agmm-children a, #agmm .agmm-action, #agmm .agmm-cta').forEach(decorate);
+ document.querySelectorAll('.header-nav-list .header-nav-item a, .header-nav-list .header-nav-item--folder .header-nav-folder-title, #agmm .agmm-row > .agmm-link, #agmm .agmm-row > .agmm-label, #agmm .agmm-children a, #agmm .agmm-action, #agmm .agmm-cta, .header-actions .user-accounts-link a, .header-nav .user-accounts-link a').forEach(decorate);
 }
 let queued=false;function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;run()})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{run();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true})},{once:true});

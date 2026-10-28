@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.7
+/* AG STUDIO — Journal Editorial Grid v2.8
    Squarespace 7.1 Basic Grid — selectors verified against live card markup.
    No native image geometry or article-page modifications.
 */
@@ -244,5 +244,30 @@ html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-e
 @media (max-width: 767px) {
   .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
     padding-top: 10px !important;
+  }
+}
+
+/* v2.8 — Proportional cover corners and aligned editorial excerpts */
+.blog-list.blog-basic-grid .ag-editorial-card > div:first-child > a.image-wrapper {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+/* The actual native image lives before .blog-basic-grid--text.
+   Keep its inline absolute position and object-fit untouched. */
+.blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+  flex: 1 1 auto;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+  min-height: 5.16em;
+  margin-bottom: 24px !important;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
+  line-height: 1.72;
+}
+@media (max-width: 767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+    min-height: 0;
+    margin-bottom: 22px !important;
   }
 }

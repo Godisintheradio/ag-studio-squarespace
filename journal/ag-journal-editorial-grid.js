@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.1
+/* AG STUDIO — Journal Editorial Grid v2.4
    Non-destructive progressive enhancement for Squarespace 7.1 Basic Grid.
 */
 (function () {
@@ -26,6 +26,10 @@
         }
         const label = String(index + 1).padStart(2, "0");
         if (number.textContent !== label) number.textContent = label;
+        const meta = card.querySelector(".blog-meta");
+        if (meta && meta.dataset.agEditorialNumber !== label) {
+          meta.dataset.agEditorialNumber = label;
+        }
       });
     });
   }

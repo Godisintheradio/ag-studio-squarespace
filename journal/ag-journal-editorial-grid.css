@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.11
+/* AG STUDIO — Journal Editorial Grid v2.12
    Squarespace 7.1 Basic Grid — selectors verified against live card markup.
    No native image geometry or article-page modifications.
 */
@@ -342,5 +342,45 @@ html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-e
   .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+}
+
+/* v2.12 — Mobile editorial reading order and breathing room */
+@media (max-width: 767px) {
+  .blog-list.blog-basic-grid article.blog-item.ag-editorial-card {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  /* Native spacer belongs to the image-first layout; remove its empty
+     reservation when composing the mobile text-first editorial card. */
+  .blog-list.blog-basic-grid .ag-editorial-card > .blog-article-spacer {
+    display: none !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card > .blog-basic-grid--text {
+    order: 0 !important;
+    padding-top: 0 !important;
+    flex: 0 0 auto !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card > div:first-child {
+    order: 1 !important;
+    margin-top: 0 !important;
+    flex: 0 0 auto !important;
+    min-width: 0;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section {
+    margin: 0 0 22px !important;
+    padding-bottom: 14px !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card h1.blog-title {
+    min-height: 0 !important;
+    margin: 0 0 32px !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+    padding-top: 15px !important;
+    margin: 0 0 14px !important;
+    min-height: 0 !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
+    margin: 0 !important;
   }
 }

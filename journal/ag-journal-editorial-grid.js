@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.5
+/* AG STUDIO — Journal Editorial Grid v2.9
    DOM-verified metadata and idempotent numbering, Basic Grid only.
 */
 (function () {
@@ -14,6 +14,13 @@
         }
         const meta = card.querySelector(".blog-basic-grid--text .blog-meta-section");
         if (!meta) return;
+        // Squarespace may emit uppercase author text: normalize the actual text.
+        meta.querySelectorAll(".blog-author").forEach(author => {
+          const normalized = author.textContent.trim().toLocaleLowerCase("it-IT")
+            .replace(/(^|[\\s'’-])([\\p{L}])/gu, (_, separator, letter) =>
+              separator + letter.toLocaleUpperCase("it-IT"));
+          if (author.textContent !== normalized) author.textContent = normalized;
+        });
         let number = card.querySelector(".ag-editorial-card__number");
         if (!number) {
           number = document.createElement("span");

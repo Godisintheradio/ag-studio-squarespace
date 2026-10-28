@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.8
+/* AG STUDIO — Journal Editorial Grid v2.8.1
    Squarespace 7.1 Basic Grid — selectors verified against live card markup.
    No native image geometry or article-page modifications.
 */
@@ -269,5 +269,27 @@ html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-e
   .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
     min-height: 0;
     margin-bottom: 22px !important;
+  }
+}
+
+/* v2.8.1 — aligned rule BETWEEN title and excerpt */
+@media (min-width: 768px) {
+  .blog-list.blog-basic-grid .ag-editorial-card h1.blog-title {
+    min-height: 3.6em;
+  }
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  border-top: 1px solid var(--ag-eg-line);
+  padding-top: 15px !important;
+}
+@media (max-width:767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card h1.blog-title {
+    min-height: 0;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+    padding-top: 13px !important;
   }
 }

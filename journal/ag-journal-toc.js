@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Table of Contents v1.1 */
+/* AG STUDIO — Journal Table of Contents v1.2 */
 (function () {
   "use strict";
   const CLASS = "ag-journal-toc";
@@ -8,7 +8,8 @@
 
   function update() {
     const root = document.querySelector(".blog-item-content.e-content, .blog-item-content");
-    if (!root || !document.body.classList.contains("view-item")) return;
+    // Identify article pages by their own markup, not the archive layout.
+    if (!root || !document.querySelector(".blog-item-top-wrapper")) return;
 
     // Exclude headings inside related articles, custom code and the TOC itself.
     const headings = Array.from(root.querySelectorAll("h2")).filter(h =>

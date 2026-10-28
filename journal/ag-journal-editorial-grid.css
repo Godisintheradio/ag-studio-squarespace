@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.2
+/* AG STUDIO — Journal Editorial Grid v2.3
    Squarespace 7.1 Basic Grid ONLY. No edits to single blog posts.
    Native editor: 3 columns / image above / original image ratio / excerpt on.
 */
@@ -56,7 +56,7 @@
 }
 .blog-list.blog-basic-grid .ag-editorial-card .blog-meta {
   position: static !important;
-  margin: 0 38px 18px 0 !important;
+  margin: 0 38px 14px 0 !important;
   padding: 0 !important;
   text-align: left;
   font-size: 11px;
@@ -64,9 +64,9 @@
 }
 .blog-list.blog-basic-grid .ag-editorial-card .blog-title {
   position: static !important;
-  margin: 0 0 12px !important;
-  font-size: clamp(19px,1.7vw,26px);
-  line-height: 1.22;
+  margin: 0 0 16px !important;
+  font-size: clamp(21px,1.8vw,28px);
+  line-height: 1.18;
   letter-spacing: -.035em;
   font-weight: 600;
   text-align: left;
@@ -85,7 +85,7 @@
 .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt,
 .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
   margin: 0;
@@ -122,4 +122,48 @@ html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-t
 }
 @media(prefers-reduced-motion:reduce) {
   .blog-list.blog-basic-grid .ag-editorial-card { transition:none !important; }
+}
+
+/* 08 — Editorial refinements. No image sizing/position override. */
+.blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+  padding-top: clamp(18px, 2vw, 28px) !important;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta,
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta a,
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-primary,
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-secondary {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: .045em;
+  text-decoration: none !important;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+  max-width: 52ch;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
+  opacity: .82;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-title a {
+  text-underline-offset: 5px;
+}
+@media (hover:hover) {
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-title a:hover {
+    text-decoration: underline !important;
+    text-decoration-color: var(--ag-eg-accent) !important;
+    text-decoration-thickness: 1px !important;
+  }
+}
+html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-meta,
+html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt {
+  color: #d5dad6;
+}
+@media(max-width:767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+    padding-top: 20px !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-title {
+    font-size: 22px;
+    line-height: 1.22;
+  }
 }

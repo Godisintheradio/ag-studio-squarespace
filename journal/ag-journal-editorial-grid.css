@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.5
+/* AG STUDIO — Journal Editorial Grid v2.6
    Squarespace 7.1 Basic Grid — selectors verified against live card markup.
    No native image geometry or article-page modifications.
 */
@@ -150,4 +150,74 @@ html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-e
 }
 @media(prefers-reduced-motion:reduce) {
   .blog-list.blog-basic-grid .ag-editorial-card { transition:none !important; }
+}
+
+/* ==========================================================
+   v2.6 — Editorial typography and micro-details
+   The native cover layout, aspect ratio and DOM order are untouched.
+   ========================================================== */
+
+/* More generous reading rhythm, without stretching cards. */
+.blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+  padding-top: clamp(24px, 2.5vw, 36px) !important;
+}
+
+/* Metadata: restrained editorial kicker and clear separation. */
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section {
+  margin-bottom: 19px !important;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--ag-eg-line);
+  font-size: 10px;
+  line-height: 1.65;
+  letter-spacing: .055em;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-meta-primary,
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-meta-secondary {
+  font-size: inherit;
+  line-height: inherit;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-categories {
+  text-decoration: none !important;
+  font-weight: 600;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .ag-editorial-card__number {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .07em;
+}
+
+/* Titles gain prominence; paragraph remains quieter. */
+.blog-list.blog-basic-grid .ag-editorial-card h1.blog-title {
+  font-size: clamp(22px, 1.92vw, 29px) !important;
+  font-weight: 600;
+  line-height: 1.2 !important;
+  letter-spacing: -.038em;
+  margin-bottom: 16px !important;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt p {
+  font-size: 14px;
+  line-height: 1.72;
+  letter-spacing: .002em;
+  opacity: .9;
+}
+
+/* The cover stays native: just a fine visual transition on hover. */
+@media (hover:hover) {
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-categories:hover {
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--ag-eg-accent) !important;
+  }
+}
+@media (max-width:767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+    padding-top: 24px !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card h1.blog-title {
+    font-size: 23px !important;
+    line-height: 1.24 !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section {
+    margin-bottom: 16px !important;
+  }
 }

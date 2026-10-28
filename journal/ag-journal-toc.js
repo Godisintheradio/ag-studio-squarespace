@@ -1,78 +1,84 @@
-/* AG STUDIO — Journal Table of Contents v1.0
-   Automatically builds a summary from headings in Squarespace blog posts.
-*/
+/* AG STUDIO — Journal Table of Contents v1.1 */
 (function () {
   "use strict";
-  const TOC_CLASS = "ag-journal-toc";
-  const HEADING_ID_PREFIX = "ag-journal-section-";
-  const MIN_HEADINGS = 3;
+  const CLASS = "ag-journal-toc";
+  const MIN = 3;
+  let observer;
+  let pending = false;
 
-  function isArticle() {
-    return document.body.classList.contains("collection-type-blog-masonry") &&
-      document.body.classList.contains("view-item");
-  }
-  function getHeadings(root) {
-    return Array.from(root.querySelectorAll("h2")).filter(function (heading) {
-      return heading.textContent.trim() &&
-        !heading.closest(".summary-v2-block, .ag-journal-toc, .sqs-block-code, nav, aside");
-    });
-  }
-  function makeId(heading, index) {
-    if (heading.id) return heading.id;
-    let id = HEADING_ID_PREFIX + (index + 1);
-    let suffix = 2;
-    while (document.getElementById(id)) id = HEADING_ID_PREFIX + (index + 1) + "-" + suffix++;
-    heading.id = id;
-    return id;
-  }
-  function build() {
-    if (!isArticle()) return;
-    const root = document.querySelector(".blog-item-content");
-    if (!root) return;
-    const headings = getHeadings(root);
-    const old = root.querySelector("." + TOC_CLASS);
-    if (old) old.remove();
-    if (headings.length < MIN_HEADINGS) return;
+  function update() {
+    const root = document.querySelector(".blog-item-content.e-content, .blog-item-content");
+    if (!root || !document.body.classList.contains("view-item")) return;
+
+    // Exclude headings inside related articles, custom code and the TOC itself.
+    const headings = Array.from(root.querySelectorAll("h2")).filter(h =>
+      h.textContent.trim() &&
+      !h.closest(".summary-v2-block, .sqs-block-code, .ag-journal-toc, aside, nav")
+    );
+    if (headings.length < MIN) return;
+
+    const existing = root.querySelector("." + CLASS);
+    const signature = headings.map(h => h.textContent.trim()).join("|");
+    if (existing && existing.dataset.signature === signature) return;
+    if (existing) existing.remove();
 
     const nav = document.createElement("nav");
-    nav.className = TOC_CLASS;
+    nav.className = CLASS;
     nav.setAttribute("aria-label", "Sommario dell'articolo");
+    nav.dataset.signature = signature;
 
-    const label = document.createElement("div");
-    label.className = "ag-journal-toc__heading";
-    label.textContent = "In questo articolo";
-    nav.appendChild(label);
+    const title = document.createElement("div");
+    title.className = "ag-journal-toc__heading";
+    title.textContent = "In questo articolo";
+    nav.appendChild(title);
 
-    const list = document.createElement("ol");
-    headings.forEach(function (heading, index) {
+    const ol = document.createElement("ol");
+    headings.forEach((h, index) => {
+      if (!h.id) {
+        const base = "ag-journal-section-" + (index + 1);
+        let id = base, n = 2;
+        while (document.getElementById(id)) id = base + "-" + n++;
+        h.id = id;
+      }
       const li = document.createElement("li");
-      const link = document.createElement("a");
-      const id = makeId(heading, index);
-      link.href = "#" + encodeURIComponent(id);
-      link.textContent = heading.textContent.trim();
-      li.appendChild(link);
-      list.appendChild(li);
+      const a = document.createElement("a");
+      a.href = "#" + encodeURIComponent(h.id);
+      a.textContent = h.textContent.trim();
+      li.appendChild(a);
+      ol.appendChild(li);
     });
-    nav.appendChild(list);
+    nav.appendChild(ol);
 
-    // Insert before first section, after the post's introduction.
-    const first = headings[0];
-    const block = first.closest(".sqs-block");
-    if (block && root.contains(block)) {
-      block.parentNode.insertBefore(nav, block);
+    const firstBlock = headings[0].closest(".sqs-block");
+    // Squarespace text blocks sit inside .sqs-row > .sqs-col.
+    // Insert as a sibling of the first H2's block to preserve the grid.
+    if (firstBlock && root.contains(firstBlock)) {
+      firstBlock.before(nav);
     } else {
-      first.parentNode.insertBefore(nav, first);
+      headings[0].before(nav);
     }
   }
-  function start() {
-    build();
-    window.addEventListener("pageshow", build);
-    // Squarespace can replace post markup during navigation.
-    document.addEventListener("mercury:load", build);
+
+  function schedule() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(() => {
+      pending = false;
+      update();
+    });
+  }
+  function init() {
+    update();
+    observer = new MutationObserver(schedule);
+    const root = document.querySelector(".blog-item-content") || document.body;
+    observer.observe(root, { childList: true, subtree: true });
+    window.addEventListener("pageshow", schedule);
+    document.addEventListener("mercury:load", schedule);
+    document.addEventListener("DOMContentLoaded", schedule);
   }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start, { once: true });
+    document.addEventListener("DOMContentLoaded", init, {once: true});
   } else {
-    start();
+    init();
   }
 })();

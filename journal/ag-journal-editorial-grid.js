@@ -1,38 +1,34 @@
-/* AG STUDIO — Journal Editorial Grid v2.0
-   Progressive enhancement: never modifies article pages or native card content.
+/* AG STUDIO — Journal Editorial Grid v2.1
+   Non-destructive progressive enhancement for Squarespace 7.1 Basic Grid.
 */
 (function () {
   "use strict";
   const LIST = ".blog-list.blog-basic-grid";
   const CARD = "ag-editorial-card";
+  let scheduled = false;
 
   function decorate() {
     document.querySelectorAll(LIST).forEach(list => {
-      // An article is a card only when it contains a blog listing title.
-      const candidates = Array.from(list.querySelectorAll(".blog-title"));
-      const cards = [];
-      const seen = new Set();
-      candidates.forEach(title => {
-        const card = title.closest("article.blog-item, .blog-item, article");
-        if (!card || !list.contains(card) || seen.has(card)) return;
-        seen.add(card);
-        cards.push(card);
-      });
+      const cards = Array.from(list.querySelectorAll(".blog-item")).filter(card =>
+        card.querySelector(".blog-title") &&
+        card.querySelector(".blog-basic-grid--text")
+      );
       cards.forEach((card, index) => {
-        card.classList.add(CARD);
-        let number = card.querySelector(":scope > .ag-editorial-card__number");
+        if (!card.classList.contains(CARD)) card.classList.add(CARD);
+        let number = Array.from(card.children).find(el =>
+          el.classList.contains("ag-editorial-card__number")
+        );
         if (!number) {
           number = document.createElement("span");
           number.className = "ag-editorial-card__number";
           number.setAttribute("aria-hidden", "true");
           card.appendChild(number);
         }
-        number.textContent = String(index + 1).padStart(2, "0");
+        const label = String(index + 1).padStart(2, "0");
+        if (number.textContent !== label) number.textContent = label;
       });
     });
   }
-
-  let scheduled = false;
   function schedule() {
     if (scheduled) return;
     scheduled = true;
@@ -41,20 +37,15 @@
       decorate();
     });
   }
-
   function init() {
     decorate();
     const root = document.querySelector(LIST);
-    if (root) {
-      const observer = new MutationObserver(schedule);
-      observer.observe(root, { childList: true, subtree: true });
-    }
+    if (root) new MutationObserver(schedule).observe(root, { childList:true, subtree:true });
     window.addEventListener("pageshow", schedule);
     document.addEventListener("mercury:load", schedule);
   }
-
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init, { once: true });
+    document.addEventListener("DOMContentLoaded", init, {once:true});
   } else {
     init();
   }

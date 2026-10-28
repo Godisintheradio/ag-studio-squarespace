@@ -14,7 +14,7 @@
   function getHeadings(root) {
     return Array.from(root.querySelectorAll("h2")).filter(function (heading) {
       return heading.textContent.trim() &&
-        !heading.closest(".summary-v2-block, .ag-journal-toc, .sqs-block-code, .sqs-block-html, nav, aside");
+        !heading.closest(".summary-v2-block, .ag-journal-toc, .sqs-block-code, nav, aside");
     });
   }
   function makeId(heading, index) {

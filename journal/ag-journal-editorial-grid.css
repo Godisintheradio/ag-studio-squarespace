@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid v2.6
+/* AG STUDIO — Journal Editorial Grid v2.7
    Squarespace 7.1 Basic Grid — selectors verified against live card markup.
    No native image geometry or article-page modifications.
 */
@@ -219,5 +219,30 @@ html[data-ag-theme="dark"] .blog-list.blog-basic-grid .ag-editorial-card .blog-e
   }
   .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section {
     margin-bottom: 16px !important;
+  }
+}
+
+/* v2.7 — Fine details requested for AG Studio Journal */
+.blog-list.blog-basic-grid article.blog-item.ag-editorial-card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+/* The real author field lives inside .blog-meta-section. */
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-author {
+  text-transform: none !important;
+  font-variant: normal;
+}
+/* Move metadata and its divider closer to the upper card inset,
+   preserving the native image positioning. */
+.blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+  padding-top: 10px !important;
+}
+.blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section {
+  padding-bottom: 8px;
+  margin-bottom: 16px !important;
+}
+@media (max-width: 767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text {
+    padding-top: 10px !important;
   }
 }

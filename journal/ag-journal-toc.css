@@ -1,0 +1,82 @@
+/* AG STUDIO — Journal Table of Contents v1.0 */
+body.collection-type-blog-masonry.view-item .ag-journal-toc {
+  --ag-toc-line: rgba(30, 48, 42, .18);
+  --ag-toc-accent: #E0A66B;
+  margin: 36px 0 44px;
+  padding: 24px 26px 22px;
+  border: 1px solid var(--ag-toc-line);
+  border-radius: 8px;
+  color: inherit;
+  font-family: inherit;
+}
+body.collection-type-blog-masonry.view-item .ag-journal-toc__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+body.collection-type-blog-masonry.view-item .ag-journal-toc__heading::after {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--ag-toc-accent);
+}
+body.collection-type-blog-masonry.view-item .ag-journal-toc ol {
+  list-style: none;
+  counter-reset: ag-toc;
+  padding: 0;
+  margin: 18px 0 0;
+}
+body.collection-type-blog-masonry.view-item .ag-journal-toc li {
+  counter-increment: ag-toc;
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  padding: 9px 0;
+  margin: 0;
+  border-top: 1px solid var(--ag-toc-line);
+  line-height: 1.55;
+}
+body.collection-type-blog-masonry.view-item .ag-journal-toc li::before {
+  content: counter(ag-toc, decimal-leading-zero);
+  flex: none;
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--ag-toc-accent);
+  font-weight: 600;
+}
+body.collection-type-blog-masonry.view-item .ag-journal-toc a {
+  color: inherit !important;
+  font-size: 15px;
+  text-decoration: none !important;
+  transition: opacity .2s ease;
+}
+@media (hover: hover) {
+  body.collection-type-blog-masonry.view-item .ag-journal-toc a:hover {
+    opacity: .65;
+    text-decoration: underline !important;
+    text-underline-offset: 4px;
+  }
+}
+body.collection-type-blog-masonry.view-item .blog-item-content h2[id] {
+  scroll-margin-top: 110px;
+}
+html[data-ag-theme="dark"] body.collection-type-blog-masonry.view-item .ag-journal-toc {
+  --ag-toc-line: #46534D;
+}
+@media (max-width: 767px) {
+  body.collection-type-blog-masonry.view-item .ag-journal-toc {
+    margin: 26px 0 34px;
+    padding: 20px 18px;
+  }
+  body.collection-type-blog-masonry.view-item .ag-journal-toc a { font-size: 14px; }
+  body.collection-type-blog-masonry.view-item .blog-item-content h2[id] { scroll-margin-top: 85px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.collection-type-blog-masonry.view-item .ag-journal-toc a { transition: none; }
+}

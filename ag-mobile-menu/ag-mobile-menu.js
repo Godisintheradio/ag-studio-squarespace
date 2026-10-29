@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.3. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.4. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -67,7 +67,14 @@ function setup(){
  const header=document.querySelector('header#header, header.Header, .header');
  const logo=header?.querySelector('.header-title-logo img, .header-title img, .header-branding img');
  const logoUrl=logo&&(logo.currentSrc||logo.getAttribute('src')||logo.getAttribute('data-src'));
- if(logoUrl){const img=document.createElement('img');img.src=logoUrl;img.alt=logo.alt||'Antonio Giardiello';img.decoding='async';brand.append(img)}
+ if(logoUrl){
+  const img=document.createElement('img');
+  img.src='https://static1.squarespace.com/static/5b6476223917eeb605c563f4/t/6ae320f38d4e95758258b329/1793270003136/Brand-AG-dark.png';
+  img.alt=logo.alt||'Antonio Giardiello';
+  img.decoding='async';
+  img.onerror=()=>{img.onerror=null;img.src=logoUrl};
+  brand.append(img);
+ }
  else {
   const label=header?.querySelector('.header-title-text a, .header-title-text, .header-title a, .header-title');
   brand.textContent=text(label)||'Antonio Giardiello';

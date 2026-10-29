@@ -1,70 +1,60 @@
-/* AG Studio — Global Day/Night Logo v1.0 (Squarespace 7.1)
- * Dark mode source of truth: html[data-ag-theme="dark"]
- * Header logo only; mobile drawer already uses the dark brand image.
- */
-(function () {
+/* AG Studio — Global Day/Night Logo v1.1 (Squarespace 7.1) */
+(function(){
   'use strict';
-  if (window.__AG_LOGO_THEME__) return;
-  window.__AG_LOGO_THEME__ = true;
+  if(window.__AG_LOGO_THEME__)return;
+  window.__AG_LOGO_THEME__=true;
 
-  const DARK_LOGO = 'https://static1.squarespace.com/static/5b6476223917eeb605c563f4/t/6ae320f38d4e95758258b329/1793270003136/Brand-AG-dark.png';
-  const original = new WeakMap();
-  const headerSelector = 'header#header, header.Header, header.header, .header';
-  const logoSelector = '.header-title-logo img, .header-title img, .header-branding img';
-  let queued = false;
+  const DARK_LOGO='https://static1.squarespace.com/static/5b6476223917eeb605c563f4/t/6ae320f38d4e95758258b329/1793270003136/Brand-AG-dark.png';
+  const HEADER='header#header, header.Header, header.header, .header';
+  const SELECTORS='.header-title-logo img, .header-title img, .header-branding img, .header-display-desktop .header-title img, .header-display-mobile .header-title img';
+  const originals=new WeakMap();
+  let scheduled=false;
 
-  function isDark() {
-    return document.documentElement.getAttribute('data-ag-theme') === 'dark';
-  }
-
-  function update() {
-    queued = false;
-    const header = document.querySelector(headerSelector);
-    const logo = header && header.querySelector(logoSelector);
-    if (!logo) return;
-
-    if (!original.has(logo)) {
-      original.set(logo, {
-        src: logo.getAttribute('src'),
-        srcset: logo.getAttribute('srcset'),
-        sizes: logo.getAttribute('sizes')
-      });
+  function save(img){
+    if(!originals.has(img)){
+      const attrs={};
+      for(const name of ['src','srcset','sizes'])attrs[name]=img.getAttribute(name);
+      const sources=Array.from(img.parentElement?.tagName==='PICTURE'?img.parentElement.querySelectorAll('source'):[]);
+      originals.set(img,{attrs,sources:sources.map(node=>({node,srcset:node.getAttribute('srcset')}))});
     }
-    const saved = original.get(logo);
-    const dark = isDark();
-    if (logo.dataset.agLogoMode === (dark ? 'dark' : 'light')) return;
-
-    if (dark) {
-      logo.removeAttribute('srcset');
-      logo.removeAttribute('sizes');
-      logo.setAttribute('src', DARK_LOGO);
-    } else {
-      for (const attr of ['src', 'srcset', 'sizes']) {
-        if (saved[attr] === null) logo.removeAttribute(attr);
-        else logo.setAttribute(attr, saved[attr]);
-      }
-    }
-    logo.dataset.agLogoMode = dark ? 'dark' : 'light';
+    return originals.get(img);
   }
-
-  function schedule() {
-    if (queued) return;
-    queued = true;
+  function setAttr(node,name,value){
+    if(value===null)node.removeAttribute(name);
+    else node.setAttribute(name,value);
+  }
+  function updateLogo(img,dark){
+    const stored=save(img);
+    const next=dark?'dark':'light';
+    if(img.dataset.agLogoMode===next)return;
+    if(dark){
+      img.removeAttribute('srcset');
+      img.removeAttribute('sizes');
+      img.setAttribute('src',DARK_LOGO);
+      stored.sources.forEach(({node})=>node.setAttribute('srcset',DARK_LOGO));
+    }else{
+      Object.entries(stored.attrs).forEach(([name,value])=>setAttr(img,name,value));
+      stored.sources.forEach(({node,srcset})=>setAttr(node,'srcset',srcset));
+    }
+    img.dataset.agLogoMode=next;
+  }
+  function update(){
+    scheduled=false;
+    const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
+    document.querySelectorAll(HEADER).forEach(header=>{
+      header.querySelectorAll(SELECTORS).forEach(img=>updateLogo(img,dark));
+    });
+  }
+  function schedule(){
+    if(scheduled)return;
+    scheduled=true;
     requestAnimationFrame(update);
   }
-
-  function init() {
-    schedule();
-    new MutationObserver(schedule).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-ag-theme']
-    });
-    const header = document.querySelector(headerSelector);
-    if (header) {
-      new MutationObserver(schedule).observe(header, { childList: true, subtree: true });
-    }
+  function init(){
+    update();
+    new MutationObserver(schedule).observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
+    new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else init();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
 })();

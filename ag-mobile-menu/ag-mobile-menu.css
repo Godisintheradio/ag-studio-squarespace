@@ -29,3 +29,34 @@
 #agmm .agmm-theme-label{color:var(--agmm-ink);font-size:15px;font-weight:600}
 #agmm #ag-theme-switch{position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;z-index:auto!important;margin:0!important;flex-shrink:0;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
 @media(min-width:768px){#agmm .agmm-theme-slot{display:none!important}}
+
+/* AG drawer — theme responsive, without replacing the native theme button */
+@media (max-width: 767px) {
+  html[data-ag-theme="dark"] #agmm {
+    --agmm-bg:#14191B;
+    --agmm-ink:#F5F3EE;
+    --agmm-muted:#B1BBB7;
+    --agmm-line:rgba(245,243,238,.20);
+  }
+  html[data-ag-theme="dark"] #agmm .agmm-panel {
+    background-color:#14191B !important;
+    color:#F5F3EE;
+  }
+  html[data-ag-theme="dark"] #agmm .agmm-cta {
+    background:transparent;
+    color:#F5F3EE !important;
+    border:1px solid rgba(245,243,238,.72);
+  }
+  html[data-ag-theme="dark"] #agmm .agmm-children a {
+    color:#B1BBB7 !important;
+  }
+  /* Relocate the original native switch; keep its own icon and dimensions. */
+  #agmm .agmm-theme-slot #ag-theme-switch {
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+    width:auto;
+    height:auto;
+    flex:0 0 auto;
+  }
+}

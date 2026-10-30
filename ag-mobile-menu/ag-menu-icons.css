@@ -63,3 +63,28 @@
     stroke: currentColor;
   }
 }
+
+/* Desktop: remove native hover underline in navigation dropdown */
+@media (min-width:768px) {
+ .header-nav .header-nav-folder-content a,
+ .header-nav .header-nav-folder-content a:hover,
+ .header-nav .header-nav-folder-content a:focus-visible,
+ .header-nav .header-nav-folder-item a,
+ .header-nav .header-nav-folder-item a:hover,
+ .header-nav .header-nav-folder-item a:focus-visible {
+   text-decoration:none!important;
+   text-decoration-line:none!important;
+   background-image:none!important;
+ }
+ .header-nav .header-nav-folder-content a::after,
+ .header-nav .header-nav-folder-item a::after {
+   text-decoration:none!important;
+ }
+ html[data-ag-theme="dark"] .header-nav .header-nav-item--folder > a .ag-nav-icon,
+ html[data-ag-theme="dark"] .header-nav .header-nav-item--folder > a .ag-nav-icon svg,
+ html[data-ag-theme="dark"] .header-nav .header-nav-folder-title .ag-nav-icon,
+ html[data-ag-theme="dark"] .header-nav .header-nav-folder-title .ag-nav-icon svg {
+   color:#E0A66B!important;
+   stroke:currentColor;
+ }
+}

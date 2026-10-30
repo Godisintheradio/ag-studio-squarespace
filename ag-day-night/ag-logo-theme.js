@@ -16,6 +16,7 @@
       for(const name of ['src','srcset','sizes'])attrs[name]=img.getAttribute(name);
       const sources=Array.from(img.parentElement?.tagName==='PICTURE'?img.parentElement.querySelectorAll('source'):[]);
       originals.set(img,{attrs,sources:sources.map(node=>({node,srcset:node.getAttribute('srcset')}))});
+      if(attrs.src)img.dataset.agOriginalLogoSrc=attrs.src;
     }
     return originals.get(img);
   }

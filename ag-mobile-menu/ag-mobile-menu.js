@@ -90,13 +90,25 @@ function setup(){
   img.className='agmm-brand-logo';
   brand.append(img);
   const darkLogo='https://static1.squarespace.com/static/5b6476223917eeb605c563f4/t/6ae320f38d4e95758258b329/1793270003136/Brand-AG-dark.png';
+  // Keep a separate day-logo URL; do not read currentSrc immediately after a theme switch.
+  let dayLogo=logo.dataset.agOriginalLogoSrc||'';
+  if(!dayLogo&&document.documentElement.getAttribute('data-ag-theme')!=='dark'){
+   dayLogo=logo.getAttribute('src')||logo.currentSrc||'';
+  }
   const updateBrand=()=>{
    const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
-   const src=dark?darkLogo:(logo.currentSrc||logo.src);
-   if(src&&img.getAttribute('src')!==src)img.src=src;
+   const original=logo.dataset.agOriginalLogoSrc;
+   if(original)dayLogo=original;
+   else if(!dark){
+    const candidate=logo.getAttribute('src');
+    if(candidate&&candidate!==darkLogo)dayLogo=candidate;
+   }
+   const src=dark?darkLogo:dayLogo;
+   if(src&&img.getAttribute('src')!==src)img.setAttribute('src',src);
   };
   updateBrand();
   new MutationObserver(updateBrand).observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
+  new MutationObserver(updateBrand).observe(logo,{attributes:true,attributeFilter:['data-ag-original-logo-src','src']});
  }else brand.textContent='Antonio Giardiello';
  const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>close());
  head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);

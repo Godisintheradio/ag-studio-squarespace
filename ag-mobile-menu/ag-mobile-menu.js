@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.5. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.6. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -57,11 +57,10 @@ function addThemeControl(secondary){
  toggle.addEventListener('click',()=>{
   const target=findThemeToggle();
   if(!target){
-   // Fallback for custom installations whose switch has no stable selector.
-   const root=document.documentElement;
-   root.setAttribute('data-ag-theme',root.getAttribute('data-ag-theme')==='dark'?'light':'dark');
-   root.dispatchEvent(new CustomEvent('ag:themechange',{detail:{theme:root.getAttribute('data-ag-theme')}}));
-   sync();return;
+   // Never set data-ag-theme directly: the site theme controller
+   // also persists settings and updates Squarespace components.
+   console.warn('[AG Mobile Menu] Selettore Giorno/Notte originale non trovato.');
+   return;
   }
   // Delegate to the site's actual theme control, preserving its persistence.
   if(target.matches('input[type="checkbox"]'))target.click();

@@ -171,3 +171,43 @@
 @media (prefers-reduced-motion: reduce) {
   #agmm #ag-theme-switch::before{transition:none!important}
 }
+
+/* Finitura: passaggio morbido tra Giorno e Notte del drawer */
+@media (max-width: 767px) {
+  #agmm,
+  #agmm .agmm-panel,
+  #agmm .agmm-head,
+  #agmm .agmm-body,
+  #agmm .agmm-group,
+  #agmm .agmm-theme-slot,
+  #agmm .agmm-link,
+  #agmm .agmm-toggle,
+  #agmm .agmm-action,
+  #agmm .agmm-children a,
+  #agmm .agmm-theme-label,
+  #agmm .agmm-cta {
+    transition-property: background-color, color, border-color, opacity;
+    transition-duration: .32s;
+    transition-timing-function: ease;
+  }
+  /* Preserve original drawer opening/closing slide motion. */
+  #agmm .agmm-panel {
+    transition: transform .32s cubic-bezier(.22,.61,.36,1),
+                background-color .32s ease,
+                color .32s ease;
+  }
+  #agmm {
+    transition: opacity .28s ease, background-color .32s ease;
+  }
+  #agmm #ag-theme-switch {
+    transition: background-color .32s ease, color .32s ease !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #agmm, #agmm .agmm-panel, #agmm .agmm-head, #agmm .agmm-body,
+  #agmm .agmm-group, #agmm .agmm-theme-slot, #agmm .agmm-link,
+  #agmm .agmm-toggle, #agmm .agmm-action, #agmm .agmm-children a,
+  #agmm .agmm-theme-label, #agmm .agmm-cta, #agmm #ag-theme-switch {
+    transition: none !important;
+  }
+}

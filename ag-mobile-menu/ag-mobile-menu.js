@@ -5,7 +5,7 @@ if(window.__AGMM71__)return;
 window.__AGMM71__=true;
 const ID='agmm';
 const config={nav:'.header-menu-nav-list',burger:'.header-burger-btn'};
-let overlay,opener,lastFocus,restoreOverflow='',inerted=[],closeDelay=null;
+let overlay,opener,lastFocus,restoreOverflow='',inerted=[],closeDelay=null,themeObserver=null;
 function tapAnimation(el){if(!el)return;el.classList.remove('agmm-tapped');void el.offsetWidth;el.classList.add('agmm-tapped');setTimeout(()=>el.classList.remove('agmm-tapped'),400)}
 const visible=el=>!!(el&&el.getClientRects().length);
 const text=el=>(el?.textContent||'').replace(/\s+/g,' ').trim();
@@ -56,14 +56,21 @@ function addThemeControl(secondary){
  }
  toggle.addEventListener('click',()=>{
   const target=findThemeToggle();
-  if(!target)return;
+  if(!target){
+   // Fallback for custom installations whose switch has no stable selector.
+   const root=document.documentElement;
+   root.setAttribute('data-ag-theme',root.getAttribute('data-ag-theme')==='dark'?'light':'dark');
+   root.dispatchEvent(new CustomEvent('ag:themechange',{detail:{theme:root.getAttribute('data-ag-theme')}}));
+   sync();return;
+  }
   // Delegate to the site's actual theme control, preserving its persistence.
   if(target.matches('input[type="checkbox"]'))target.click();
   else target.click();
   requestAnimationFrame(sync);
  });
- const observer=new MutationObserver(sync);
- observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
+ if(themeObserver)themeObserver.disconnect();
+ themeObserver=new MutationObserver(sync);
+ themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
  wrap.append(label,toggle);secondary.append(wrap);sync();
 }
 function build(){

@@ -52,3 +52,14 @@
     line-height: 1.55;
   }
 }
+
+/* Desktop — AG orange icons only in night mode */
+@media (min-width: 768px) {
+  html[data-ag-theme="dark"] .header-nav .ag-nav-icon,
+  html[data-ag-theme="dark"] .header-nav .ag-nav-icon svg,
+  html[data-ag-theme="dark"] .header-nav-list .ag-nav-icon,
+  html[data-ag-theme="dark"] .header-nav-list .ag-nav-icon svg {
+    color: #E0A66B !important;
+    stroke: currentColor;
+  }
+}

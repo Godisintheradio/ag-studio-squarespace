@@ -85,7 +85,19 @@ function setup(){
  const head=document.createElement('div');head.className='agmm-head';
  const brand=document.createElement('a');brand.className='agmm-brand';brand.href='/';brand.setAttribute('aria-label','Vai alla homepage');
  const logo=document.querySelector('.header-title-logo img, .header-title img, .header-branding img');
- if(logo){const img=document.createElement('img');img.src=logo.currentSrc||logo.src;img.alt=logo.alt||'Logo';brand.append(img)}else brand.textContent='Antonio Giardiello';
+ if(logo){
+  const img=document.createElement('img');img.alt=logo.alt||'Logo';
+  img.className='agmm-brand-logo';
+  brand.append(img);
+  const darkLogo='https://static1.squarespace.com/static/5b6476223917eeb605c563f4/t/6ae320f38d4e95758258b329/1793270003136/Brand-AG-dark.png';
+  const updateBrand=()=>{
+   const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
+   const src=dark?darkLogo:(logo.currentSrc||logo.src);
+   if(src&&img.getAttribute('src')!==src)img.src=src;
+  };
+  updateBrand();
+  new MutationObserver(updateBrand).observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
+ }else brand.textContent='Antonio Giardiello';
  const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>close());
  head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);
  themeSlot=document.createElement('div');themeSlot.className='agmm-theme-slot';

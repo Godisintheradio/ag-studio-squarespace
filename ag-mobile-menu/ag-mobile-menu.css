@@ -89,3 +89,17 @@
 #agmm .agmm-theme-toggle[aria-checked="true"] .agmm-theme-thumb{transform:translateX(24px);background:#F5F3EE}
 #agmm .agmm-theme-toggle:focus-visible{outline:2px solid #88A39A;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){#agmm .agmm-theme-track,#agmm .agmm-theme-thumb{transition:none!important}}
+
+/* v0.1.6 — il controllo originale rimane un motore nascosto su mobile.
+   L'unica interfaccia visibile è nel drawer #agmm. */
+@media (max-width: 767px) {
+  body > :is(.ag-theme-toggle,.ag-day-night-toggle,.ag-day-night-switch,#ag-theme-toggle,#ag-day-night-toggle,[data-ag-theme-toggle]),
+  body :is(.ag-theme-toggle,.ag-day-night-toggle,.ag-day-night-switch,#ag-theme-toggle,#ag-day-night-toggle,[data-ag-theme-toggle]):not(#agmm *) {
+    position: absolute !important;
+    left: -9999px !important;
+    top: auto !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}

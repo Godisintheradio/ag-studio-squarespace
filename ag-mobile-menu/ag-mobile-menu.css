@@ -79,27 +79,3 @@
 #agmm .agmm-icon::before{content:none}
 #agmm .agmm-icon[aria-expanded="true"]{transform:rotate(45deg);color:#88A39A!important}
 @media(prefers-reduced-motion:reduce){.header-burger-btn.agmm-tapped,#agmm .agmm-close.agmm-tapped,#agmm .agmm-toggle.agmm-icon.agmm-tapped{animation:none!important}}
-
-/* Beta 0.1.5 — mobile drawer day/night switch */
-#agmm .agmm-theme-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;margin-top:15px;border-top:1px solid var(--agmm-line);color:#F5F3EE;font-size:15px;font-weight:500}
-#agmm .agmm-theme-toggle{appearance:none;display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:62px;height:38px;border:0;border-radius:24px;background:transparent;cursor:pointer;padding:3px}
-#agmm .agmm-theme-track{display:flex;align-items:center;width:54px;height:30px;border:1px solid rgba(245,243,238,.58);border-radius:18px;background:rgba(245,243,238,.10);padding:3px;transition:background .25s ease,border-color .25s ease}
-#agmm .agmm-theme-thumb{display:block;width:22px;height:22px;background:#F5F3EE;border-radius:50%;transform:translateX(0);transition:transform .25s ease,background .25s ease}
-#agmm .agmm-theme-toggle[aria-checked="true"] .agmm-theme-track{background:#24473F;border-color:#88A39A}
-#agmm .agmm-theme-toggle[aria-checked="true"] .agmm-theme-thumb{transform:translateX(24px);background:#F5F3EE}
-#agmm .agmm-theme-toggle:focus-visible{outline:2px solid #88A39A;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){#agmm .agmm-theme-track,#agmm .agmm-theme-thumb{transition:none!important}}
-
-/* v0.1.6 — il controllo originale rimane un motore nascosto su mobile.
-   L'unica interfaccia visibile è nel drawer #agmm. */
-@media (max-width: 767px) {
-  body > :is(.ag-theme-toggle,.ag-day-night-toggle,.ag-day-night-switch,#ag-theme-toggle,#ag-day-night-toggle,[data-ag-theme-toggle]),
-  body :is(.ag-theme-toggle,.ag-day-night-toggle,.ag-day-night-switch,#ag-theme-toggle,#ag-day-night-toggle,[data-ag-theme-toggle]):not(#agmm *) {
-    position: absolute !important;
-    left: -9999px !important;
-    top: auto !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-}

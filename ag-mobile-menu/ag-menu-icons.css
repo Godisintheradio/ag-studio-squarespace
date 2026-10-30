@@ -88,3 +88,30 @@
    stroke:currentColor;
  }
 }
+
+/* Desktop navigation: no underlines on any item, including folder trigger */
+@media (min-width:768px) {
+  #header .header-display-desktop .header-nav a,
+  #header .header-display-desktop .header-nav a:hover,
+  #header .header-display-desktop .header-nav a:focus,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title:hover,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title:focus {
+    text-decoration:none!important;
+    text-decoration-line:none!important;
+    background-image:none!important;
+  }
+  #header .header-display-desktop .header-nav a::before,
+  #header .header-display-desktop .header-nav a::after,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title::before,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title::after {
+    text-decoration:none!important;
+    background-image:none!important;
+    border-bottom:0!important;
+  }
+  html[data-ag-theme="dark"] #header:not(.transparent-header)
+  .header-display-desktop .header-nav-item--folder > button.header-nav-folder-title svg {
+    color:#E0A66B!important;
+    stroke:#E0A66B!important;
+  }
+}

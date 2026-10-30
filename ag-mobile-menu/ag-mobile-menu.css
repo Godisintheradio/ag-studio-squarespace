@@ -97,3 +97,77 @@
 @media(prefers-reduced-motion:reduce){
  #agmm #ag-theme-switch{transition:none!important}
 }
+
+/* AG mobile menu finishing — native day/night pill and forest-green day CTA */
+@media (max-width: 767px) {
+  #agmm .agmm-theme-slot #ag-theme-switch {
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    width:94px!important;
+    height:50px!important;
+    min-width:94px!important;
+    min-height:50px!important;
+    padding:4px!important;
+    border:0!important;
+    border-radius:999px!important;
+    background:#D9C8B5!important;
+    color:#14191B!important;
+    box-shadow:none!important;
+    transform:none!important;
+    overflow:hidden!important;
+    isolation:isolate;
+    transition:background-color .24s ease!important;
+  }
+  #agmm #ag-theme-switch::before {
+    content:"";
+    position:absolute;
+    left:4px;
+    top:4px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#F9F9F6;
+    box-shadow:0 1px 4px rgba(0,0,0,.13);
+    transition:transform .28s cubic-bezier(.22,.61,.36,1)!important;
+    z-index:0;
+  }
+  #agmm #ag-theme-switch svg {
+    position:relative!important;
+    z-index:1;
+    width:24px!important;
+    height:24px!important;
+    margin-left:9px!important;
+    transform:none!important;
+    color:#14191B!important;
+    stroke:#14191B!important;
+  }
+  #agmm #ag-theme-switch .ag-sun {display:block!important}
+  #agmm #ag-theme-switch .ag-moon {display:none!important}
+  html[data-ag-theme="dark"] #agmm #ag-theme-switch {
+    background:#24473F!important;
+    justify-content:flex-end!important;
+  }
+  html[data-ag-theme="dark"] #agmm #ag-theme-switch::before {
+    transform:translateX(44px)!important;
+  }
+  html[data-ag-theme="dark"] #agmm #ag-theme-switch svg {
+    margin-left:0!important;
+    margin-right:9px!important;
+  }
+  html[data-ag-theme="dark"] #agmm #ag-theme-switch .ag-sun {display:none!important}
+  html[data-ag-theme="dark"] #agmm #ag-theme-switch .ag-moon {display:block!important}
+  #agmm #ag-theme-switch:active{transform:scale(.97)!important}
+  html:not([data-ag-theme="dark"]) #agmm .agmm-cta {
+    background:#24473F!important;
+    border:1px solid #24473F!important;
+    color:#F9F9F6!important;
+  }
+  html:not([data-ag-theme="dark"]) #agmm .agmm-cta:hover {
+    background:#1D3A34!important;
+    border-color:#1D3A34!important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #agmm #ag-theme-switch::before{transition:none!important}
+}

@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.0. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.0 + native theme switch relocation. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -54,6 +54,28 @@ function build(){
  if(cta){const a=makeLink(cta);if(a){a.className='agmm-cta';secondary.append(a)}}
  container.append(secondary);return container;
 }
+/* Relocate the actual AG theme switch; never clone or replace its behavior. */
+let themeSlot=null,themePlaceholder=null,themeButton=null;
+function syncThemeSwitch(){
+ if(!themeSlot)return;
+ const mobile=window.matchMedia('(max-width: 767px)').matches;
+ const btn=themeButton&&themeButton.isConnected?themeButton:document.querySelector('#ag-theme-switch');
+ if(!btn)return;
+ if(mobile){
+  if(btn.parentNode!==themeSlot){
+   if(!themePlaceholder){
+    themePlaceholder=document.createComment('ag-theme-switch-original-position');
+    btn.parentNode.insertBefore(themePlaceholder,btn);
+   }
+   themeButton=btn;
+   themeSlot.appendChild(btn);
+  }
+ }else if(themePlaceholder&&themePlaceholder.parentNode&&btn.parentNode===themeSlot){
+  themePlaceholder.parentNode.insertBefore(btn,themePlaceholder);
+  themePlaceholder.remove();
+  themePlaceholder=null;
+ }
+}
 function setup(){
  if(document.getElementById(ID))return;
  const nav=document.querySelector(config.nav),burger=document.querySelector(config.burger);if(!nav||!burger)return;
@@ -65,12 +87,19 @@ function setup(){
  const logo=document.querySelector('.header-title-logo img, .header-title img, .header-branding img');
  if(logo){const img=document.createElement('img');img.src=logo.currentSrc||logo.src;img.alt=logo.alt||'Logo';brand.append(img)}else brand.textContent='Antonio Giardiello';
  const x=document.createElement('button');x.type='button';x.className='agmm-close';x.textContent='×';x.setAttribute('aria-label','Chiudi menu');x.addEventListener('click',()=>close());
- head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);panel.append(head,body);overlay.append(panel);document.body.append(overlay);
+ head.append(brand,x);const body=document.createElement('nav');body.className='agmm-body';body.setAttribute('aria-label','Menu mobile');body.append(initial);
+ themeSlot=document.createElement('div');themeSlot.className='agmm-theme-slot';
+ const themeLabel=document.createElement('span');themeLabel.className='agmm-theme-label';themeLabel.textContent='Aspetto';
+ themeSlot.append(themeLabel);body.append(themeSlot);
+ panel.append(head,body);overlay.append(panel);document.body.append(overlay);
+ syncThemeSwitch();
+ const themeFinder=new MutationObserver(()=>{if(!themeButton||!themeButton.isConnected)syncThemeSwitch()});
+ themeFinder.observe(document.body,{childList:true,subtree:true});
  overlay.addEventListener('click',e=>{if(e.target===overlay)close();else if(e.target.closest('#agmm a[href]'))close(false)});
  document.addEventListener('click',e=>{
   const btn=e.target.closest?.(config.burger);if(!btn||!visible(btn))return;
   e.preventDefault();e.stopImmediatePropagation();if(!overlay.hidden){close();return}
-  const current=build();if(!current)return;body.replaceChildren(current);
+  const current=build();if(!current)return;body.insertBefore(current,themeSlot);Array.from(body.children).forEach(node=>{if(node!==current&&node!==themeSlot)node.remove()});syncThemeSwitch();
   opener=btn;lastFocus=document.activeElement;restoreOverflow=document.body.style.overflow;
   inerted=Array.from(document.body.children).filter(n=>n!==overlay).map(n=>[n,n.inert]);inerted.forEach(([n])=>n.inert=true);
   document.body.style.overflow='hidden';overlay.hidden=false;btn.setAttribute('aria-expanded','true');
@@ -80,7 +109,7 @@ function setup(){
   const focusables=Array.from(panel.querySelectorAll('a[href],button:not([disabled])')).filter(el=>visible(el));if(!focusables.length)return;
   const first=focusables[0],last=focusables[focusables.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
  });
- window.addEventListener('resize',()=>{if(!overlay.hidden&&!visible(burger))close(false)});
+ window.addEventListener('resize',()=>{syncThemeSwitch();if(!overlay.hidden&&!visible(burger))close(false)});
 }
 function close(returnFocus=true){
  if(!overlay||overlay.hidden)return;

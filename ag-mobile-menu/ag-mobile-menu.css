@@ -60,3 +60,40 @@
     flex:0 0 auto;
   }
 }
+
+/* Original #ag-theme-switch: same sun/moon SVGs, drawer-only layout */
+@media (max-width:767px) {
+ #agmm .agmm-theme-slot #ag-theme-switch {
+  appearance:none!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  position:relative!important;
+  width:46px!important;
+  height:46px!important;
+  min-width:46px!important;
+  min-height:46px!important;
+  padding:10px!important;
+  border:1px solid currentColor!important;
+  border-radius:50%!important;
+  background:transparent!important;
+  color:var(--agmm-ink)!important;
+  box-shadow:none!important;
+  cursor:pointer;
+  transition:background-color .2s ease,transform .2s ease,border-color .2s ease!important;
+ }
+ #agmm #ag-theme-switch svg {
+  width:22px!important;height:22px!important;
+  grid-area:1/1!important;
+  fill:none!important;stroke:currentColor!important;
+  stroke-width:1.7!important;stroke-linecap:round!important;stroke-linejoin:round!important;
+ }
+ #agmm #ag-theme-switch .ag-sun {display:none!important}
+ #agmm #ag-theme-switch .ag-moon {display:block!important}
+ html[data-ag-theme="dark"] #agmm #ag-theme-switch .ag-sun {display:block!important}
+ html[data-ag-theme="dark"] #agmm #ag-theme-switch .ag-moon {display:none!important}
+ #agmm #ag-theme-switch:active {transform:scale(.9)!important}
+ #agmm #ag-theme-switch:focus-visible {outline:2px solid currentColor!important;outline-offset:4px}
+}
+@media(prefers-reduced-motion:reduce){
+ #agmm #ag-theme-switch{transition:none!important}
+}

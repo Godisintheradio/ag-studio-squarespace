@@ -23,3 +23,9 @@
 #agmm .agmm-cta{display:block;background:var(--agmm-ink);border:1px solid var(--agmm-ink);color:var(--agmm-bg)!important;text-decoration:none!important;text-align:center;padding:15px 22px;font-size:15px;font-weight:600;border-radius:3px}
 #agmm a:focus-visible,#agmm button:focus-visible{outline:2px solid var(--agmm-ink);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){#agmm,#agmm .agmm-panel{transition:none!important}}
+
+/* Relocate the existing AG theme switch into mobile drawer, no duplicate control */
+#agmm .agmm-theme-slot{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--agmm-line);margin-top:22px;padding:18px 0}
+#agmm .agmm-theme-label{color:var(--agmm-ink);font-size:15px;font-weight:600}
+#agmm #ag-theme-switch{position:relative!important;inset:auto!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;z-index:auto!important;margin:0!important;flex-shrink:0;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+@media(min-width:768px){#agmm .agmm-theme-slot{display:none!important}}

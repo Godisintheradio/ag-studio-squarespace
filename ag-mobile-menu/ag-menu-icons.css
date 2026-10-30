@@ -115,3 +115,42 @@
     stroke:#E0A66B!important;
   }
 }
+
+/* Desktop v-next — folder chevron and selected-only underline */
+@media (min-width:768px) {
+  /* Squarespace folder button contains a native chevron SVG. Target its paths
+     and strokes as well as the SVG, including transparent-header variants. */
+  html[data-ag-theme="dark"] #header .header-display-desktop
+  .header-nav-item--folder > button.header-nav-folder-title svg,
+  html[data-ag-theme="dark"] #header .header-display-desktop
+  .header-nav-item--folder > button.header-nav-folder-title svg *,
+  html[data-ag-theme="dark"] #header .header-display-desktop
+  .header-nav-folder-title svg,
+  html[data-ag-theme="dark"] #header .header-display-desktop
+  .header-nav-folder-title svg * {
+    color:#E0A66B!important;
+    stroke:#E0A66B!important;
+  }
+  /* Only active/current entries have an underline: never hover-only. */
+  #header .header-display-desktop .header-nav a,
+  #header .header-display-desktop .header-nav a:hover,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title,
+  #header .header-display-desktop .header-nav button.header-nav-folder-title:hover {
+    text-decoration:none!important;
+    text-decoration-line:none!important;
+  }
+  #header .header-display-desktop .header-nav
+  :is(a[aria-current="page"],a[aria-current="true"],.header-nav-item--active > a,
+      .header-nav-folder-item--active > a,
+      .header-nav-item--active > button.header-nav-folder-title) {
+    text-decoration:underline!important;
+    text-decoration-line:underline!important;
+    text-underline-offset:5px;
+    text-decoration-thickness:1px!important;
+  }
+  /* Match native Squarespace current-page class when applied to links. */
+  #header .header-display-desktop .header-nav
+  :is(a.active,a[aria-current="page"],a[aria-current="true"]) {
+    text-decoration:underline!important;
+  }
+}

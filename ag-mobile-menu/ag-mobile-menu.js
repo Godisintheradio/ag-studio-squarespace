@@ -1,11 +1,11 @@
-/* AG Mobile Menu 7.1 — beta 0.1.6. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.3. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
 window.__AGMM71__=true;
 const ID='agmm';
 const config={nav:'.header-menu-nav-list',burger:'.header-burger-btn'};
-let overlay,opener,lastFocus,restoreOverflow='',inerted=[],closeDelay=null,themeObserver=null;
+let overlay,opener,lastFocus,restoreOverflow='',inerted=[],closeDelay=null;
 function tapAnimation(el){if(!el)return;el.classList.remove('agmm-tapped');void el.offsetWidth;el.classList.add('agmm-tapped');setTimeout(()=>el.classList.remove('agmm-tapped'),400)}
 const visible=el=>!!(el&&el.getClientRects().length);
 const text=el=>(el?.textContent||'').replace(/\s+/g,' ').trim();
@@ -18,59 +18,6 @@ function makeLink(source,label){
  const url=permittedHref(source);if(!url)return null;
  a.href=url;if(source.target==='_blank'){a.target='_blank';a.rel='noopener noreferrer'}
  return a;
-}
-/* Day/night proxy: use the existing global toggle rather than a second theme engine. */
-const themeToggleSelectors=[
- '[data-ag-theme-toggle]',
- '.ag-theme-toggle',
- '.ag-day-night-toggle',
- '.ag-day-night-switch',
- '#ag-theme-toggle',
- '#ag-day-night-toggle',
- '[aria-label*="giorno" i][aria-label*="notte" i]',
- '[aria-label*="light" i][aria-label*="dark" i]'
-];
-function findThemeToggle(){
- for(const selector of themeToggleSelectors){
-  const candidates=document.querySelectorAll(selector);
-  for(const el of candidates){
-   if(el.closest('#agmm'))continue;
-   if(el.matches('input[type="checkbox"]'))return el;
-   const clickable=el.matches('button,[role="switch"],[role="button"]')?el:el.querySelector('button,input[type="checkbox"],[role="switch"]');
-   if(clickable)return clickable;
-  }
- }
- return null;
-}
-function addThemeControl(secondary){
- const wrap=document.createElement('div');wrap.className='agmm-theme-row';
- const label=document.createElement('span');label.textContent='Modalità notte';
- const toggle=document.createElement('button');toggle.type='button';toggle.className='agmm-theme-toggle';
- toggle.setAttribute('role','switch');toggle.setAttribute('aria-label','Attiva o disattiva la modalità notte');
- const track=document.createElement('span');track.className='agmm-theme-track';
- const thumb=document.createElement('span');thumb.className='agmm-theme-thumb';track.append(thumb);toggle.append(track);
- function sync(){
-  const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
-  toggle.setAttribute('aria-checked',String(dark));
-  wrap.classList.toggle('agmm-theme-dark',dark);
- }
- toggle.addEventListener('click',()=>{
-  const target=findThemeToggle();
-  if(!target){
-   // Never set data-ag-theme directly: the site theme controller
-   // also persists settings and updates Squarespace components.
-   console.warn('[AG Mobile Menu] Selettore Giorno/Notte originale non trovato.');
-   return;
-  }
-  // Delegate to the site's actual theme control, preserving its persistence.
-  if(target.matches('input[type="checkbox"]'))target.click();
-  else target.click();
-  requestAnimationFrame(sync);
- });
- if(themeObserver)themeObserver.disconnect();
- themeObserver=new MutationObserver(sync);
- themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
- wrap.append(label,toggle);secondary.append(wrap);sync();
 }
 function build(){
  const nav=document.querySelector(config.nav),root=nav?.querySelector('[data-folder="root"]');
@@ -106,7 +53,7 @@ function build(){
  if(account){const button=document.createElement('button');button.type='button';button.className='agmm-action';button.textContent=text(account)||'Accedi';button.addEventListener('click',()=>{close(false);account.click()});secondary.append(button)}
  const cta=root.querySelector('.header-menu-cta a[href]');
  if(cta){const a=makeLink(cta);if(a){a.className='agmm-cta';secondary.append(a)}}
- addThemeControl(secondary);container.append(secondary);return container;
+ container.append(secondary);return container;
 }
 function setup(){
  if(document.getElementById(ID))return;
@@ -120,14 +67,7 @@ function setup(){
  const header=document.querySelector('header#header, header.Header, .header');
  const logo=header?.querySelector('.header-title-logo img, .header-title img, .header-branding img');
  const logoUrl=logo&&(logo.currentSrc||logo.getAttribute('src')||logo.getAttribute('data-src'));
- if(logoUrl){
-  const img=document.createElement('img');
-  img.src='https://static1.squarespace.com/static/5b6476223917eeb605c563f4/t/6ae320f38d4e95758258b329/1793270003136/Brand-AG-dark.png';
-  img.alt=logo.alt||'Antonio Giardiello';
-  img.decoding='async';
-  img.onerror=()=>{img.onerror=null;img.src=logoUrl};
-  brand.append(img);
- }
+ if(logoUrl){const img=document.createElement('img');img.src=logoUrl;img.alt=logo.alt||'Antonio Giardiello';img.decoding='async';brand.append(img)}
  else {
   const label=header?.querySelector('.header-title-text a, .header-title-text, .header-title a, .header-title');
   brand.textContent=text(label)||'Antonio Giardiello';

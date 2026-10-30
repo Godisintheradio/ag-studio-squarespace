@@ -211,3 +211,16 @@
     transition: none !important;
   }
 }
+
+/* Finitura dark: accento arancione sulle icone e sul bordo Contatti */
+@media (max-width: 767px) {
+  html[data-ag-theme="dark"] #agmm .agmm-cta {
+    border-color: #E0A66B !important;
+  }
+  html[data-ag-theme="dark"] #agmm .ag-nav-icon,
+  html[data-ag-theme="dark"] #agmm .ag-nav-icon svg,
+  html[data-ag-theme="dark"] #agmm .agmm-icon {
+    color: #E0A66B !important;
+    stroke: currentColor;
+  }
+}

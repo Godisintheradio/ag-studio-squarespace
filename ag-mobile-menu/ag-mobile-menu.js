@@ -1,4 +1,4 @@
-/* AG Mobile Menu 7.1 — beta 0.1.4. Reads Squarespace's original mobile navigation. */
+/* AG Mobile Menu 7.1 — beta 0.1.5. Reads Squarespace's original mobile navigation. */
 (function(){
 'use strict';
 if(window.__AGMM71__)return;
@@ -18,6 +18,53 @@ function makeLink(source,label){
  const url=permittedHref(source);if(!url)return null;
  a.href=url;if(source.target==='_blank'){a.target='_blank';a.rel='noopener noreferrer'}
  return a;
+}
+/* Day/night proxy: use the existing global toggle rather than a second theme engine. */
+const themeToggleSelectors=[
+ '[data-ag-theme-toggle]',
+ '.ag-theme-toggle',
+ '.ag-day-night-toggle',
+ '.ag-day-night-switch',
+ '#ag-theme-toggle',
+ '#ag-day-night-toggle',
+ '[aria-label*="giorno" i][aria-label*="notte" i]',
+ '[aria-label*="light" i][aria-label*="dark" i]'
+];
+function findThemeToggle(){
+ for(const selector of themeToggleSelectors){
+  const candidates=document.querySelectorAll(selector);
+  for(const el of candidates){
+   if(el.closest('#agmm'))continue;
+   if(el.matches('input[type="checkbox"]'))return el;
+   const clickable=el.matches('button,[role="switch"],[role="button"]')?el:el.querySelector('button,input[type="checkbox"],[role="switch"]');
+   if(clickable)return clickable;
+  }
+ }
+ return null;
+}
+function addThemeControl(secondary){
+ const wrap=document.createElement('div');wrap.className='agmm-theme-row';
+ const label=document.createElement('span');label.textContent='Modalità notte';
+ const toggle=document.createElement('button');toggle.type='button';toggle.className='agmm-theme-toggle';
+ toggle.setAttribute('role','switch');toggle.setAttribute('aria-label','Attiva o disattiva la modalità notte');
+ const track=document.createElement('span');track.className='agmm-theme-track';
+ const thumb=document.createElement('span');thumb.className='agmm-theme-thumb';track.append(thumb);toggle.append(track);
+ function sync(){
+  const dark=document.documentElement.getAttribute('data-ag-theme')==='dark';
+  toggle.setAttribute('aria-checked',String(dark));
+  wrap.classList.toggle('agmm-theme-dark',dark);
+ }
+ toggle.addEventListener('click',()=>{
+  const target=findThemeToggle();
+  if(!target)return;
+  // Delegate to the site's actual theme control, preserving its persistence.
+  if(target.matches('input[type="checkbox"]'))target.click();
+  else target.click();
+  requestAnimationFrame(sync);
+ });
+ const observer=new MutationObserver(sync);
+ observer.observe(document.documentElement,{attributes:true,attributeFilter:['data-ag-theme']});
+ wrap.append(label,toggle);secondary.append(wrap);sync();
 }
 function build(){
  const nav=document.querySelector(config.nav),root=nav?.querySelector('[data-folder="root"]');
@@ -53,7 +100,7 @@ function build(){
  if(account){const button=document.createElement('button');button.type='button';button.className='agmm-action';button.textContent=text(account)||'Accedi';button.addEventListener('click',()=>{close(false);account.click()});secondary.append(button)}
  const cta=root.querySelector('.header-menu-cta a[href]');
  if(cta){const a=makeLink(cta);if(a){a.className='agmm-cta';secondary.append(a)}}
- container.append(secondary);return container;
+ addThemeControl(secondary);container.append(secondary);return container;
 }
 function setup(){
  if(document.getElementById(ID))return;

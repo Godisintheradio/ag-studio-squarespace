@@ -1,0 +1,91 @@
+/* =========================================================
+   AG STUDIO — PRODUCT ACCORDION v0.2
+   Code Shop · Stile consolidato
+   ========================================================= */
+
+/* Separators */
+.ag-product-accordion {
+  border-top: 1px solid rgba(35, 70, 60, .28);
+}
+
+.ag-product-accordion__item {
+  border-bottom: 1px solid rgba(35, 70, 60, .28);
+}
+
+/* Expandable headings */
+.ag-product-accordion__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 2px;
+  cursor: pointer;
+  list-style: none;
+  color: inherit;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 600;
+}
+
+.ag-product-accordion__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ag-product-accordion__item summary::after {
+  content: "+";
+  flex: none;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.ag-product-accordion__item[open] summary::after {
+  content: "−";
+}
+
+/* Expanded content */
+.ag-product-accordion__content {
+  padding: 0 2px 20px;
+  line-height: 1.7;
+}
+
+.ag-product-accordion__content > :first-child {
+  margin-top: 0;
+}
+
+.ag-product-accordion__content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Product introductory H2 */
+body:has(.ag-product-accordion) .product-description h2 {
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Keyboard focus */
+.ag-product-accordion__item summary:focus-visible {
+  outline: 2px solid #E0A66B;
+  outline-offset: -2px;
+}
+
+/* Native dark Squarespace sections */
+body:has(.ag-product-accordion) section.dark .ag-product-accordion,
+body:has(.ag-product-accordion) section.black .ag-product-accordion,
+body:has(.ag-product-accordion) section.black-bold .ag-product-accordion {
+  border-top-color: rgba(255, 255, 255, .35);
+}
+
+body:has(.ag-product-accordion) section.dark .ag-product-accordion__item,
+body:has(.ag-product-accordion) section.black .ag-product-accordion__item,
+body:has(.ag-product-accordion) section.black-bold .ag-product-accordion__item {
+  border-bottom-color: rgba(255, 255, 255, .35);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .ag-product-accordion__item summary {
+    padding: 18px 2px;
+  }
+}

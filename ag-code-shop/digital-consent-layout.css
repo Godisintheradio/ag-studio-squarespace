@@ -1,0 +1,8 @@
+/* AG Studio — Code Shop / Bilingual Digital Consent */
+#checkbox-10fb1c3e-f9a1-4790-9b9c-643329839277 .ag-consent-lang {
+  display: block;
+  line-height: 1.65;
+}
+#checkbox-10fb1c3e-f9a1-4790-9b9c-643329839277 .ag-consent-lang + .ag-consent-lang {
+  margin-top: 18px;
+}

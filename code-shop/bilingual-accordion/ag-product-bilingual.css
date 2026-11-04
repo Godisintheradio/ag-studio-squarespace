@@ -1,0 +1,31 @@
+/* AG Studio — Product Bilingual Switcher v0.1 */
+.ag-product-languages__controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin: 0 0 22px;
+}
+.ag-product-languages__button {
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 9px 12px;
+  cursor: pointer;
+  opacity: .58;
+}
+.ag-product-languages__button[aria-pressed="true"] {
+  background: #e0a66b;
+  border-color: #e0a66b;
+  color: #24170f;
+  opacity: 1;
+}
+.ag-product-languages__button:focus-visible {
+  outline: 2px solid #e0a66b;
+  outline-offset: 3px;
+}
+.ag-product-languages__panel[hidden] { display: none !important; }

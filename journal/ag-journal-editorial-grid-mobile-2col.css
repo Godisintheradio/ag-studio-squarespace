@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.2)
+/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.3)
    Optional override loaded AFTER ag-journal-editorial-grid.css v2.12.
    Scope: Squarespace 7.1 Basic Grid archive only. No single-post changes.
    Remove this stylesheet to instantly restore approved one-column mobile layout.
@@ -219,5 +219,23 @@
     margin-top: 6px !important;
     padding: 10px 0 0 !important;
     border-top: 1px solid var(--ag-eg-line) !important;
+  }
+}
+
+/* v1.3 — Independent card heights during excerpt disclosure.
+   CSS grid rows still grow to fit their tallest item; however the
+   neighboring card no longer stretches to fill that row. */
+@media (min-width:360px) and (max-width:767px) {
+  .blog-list.blog-basic-grid {
+    align-items: start !important;
+  }
+  .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card {
+    align-self: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: none !important;
+  }
+  .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card > .blog-basic-grid--text {
+    flex: 0 0 auto !important;
   }
 }

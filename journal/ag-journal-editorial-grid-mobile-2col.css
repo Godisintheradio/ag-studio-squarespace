@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.0)
+/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.1)
    Optional override loaded AFTER ag-journal-editorial-grid.css v2.12.
    Scope: Squarespace 7.1 Basic Grid archive only. No single-post changes.
    Remove this stylesheet to instantly restore approved one-column mobile layout.
@@ -108,3 +108,66 @@
 
 /* A full-width card is more legible on especially narrow handsets.
    The approved v2.12 mobile styling remains active under 360px. */
+
+/* v1.1 — Accessible, per-card expandable excerpts (360–767px only). */
+@media (min-width:360px) and (max-width:767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card .ag-mobile-excerpt-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    align-self: flex-start;
+    max-width: 100%;
+    margin: 12px 0 0;
+    padding: 6px 0;
+    color: inherit;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--ag-eg-line);
+    border-radius: 0;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: .01em;
+    text-align: left;
+    cursor: pointer;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .ag-mobile-excerpt-toggle::after {
+    content: "+";
+    display: inline-block;
+    color: var(--ag-eg-accent);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .ag-mobile-excerpt-toggle[aria-expanded="true"]::after {
+    content: "−";
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .ag-mobile-excerpt-toggle:focus-visible {
+    outline: 2px solid var(--ag-eg-accent);
+    outline-offset: 3px;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card.ag-mobile-excerpt-open .blog-excerpt {
+    display: block !important;
+    width: 100%;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 10px 0 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card.ag-mobile-excerpt-open .blog-excerpt p {
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere;
+    opacity: .9;
+  }
+}
+/* At desktop and very narrow widths keep existing card behavior.
+   The control is only meaningful for the 2-column presentation. */
+@media (max-width:359px), (min-width:768px) {
+  .blog-list.blog-basic-grid .ag-editorial-card .ag-mobile-excerpt-toggle {
+    display: none !important;
+  }
+}

@@ -33,10 +33,23 @@
 /* Desktop: 530px banner with balanced, single-row actions.
    Mobile rules below retain the tested full-width vertical buttons. */
 @media screen and (min-width: 641px) {
+  /* Squarespace otherwise reserves a narrow lateral grid area for CTAs. */
   section.gdpr-cookie-banner.popup.full-styling {
     box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
     width: 530px !important;
     max-width: calc(100vw - 32px) !important;
+    height: auto !important;
+  }
+  section.gdpr-cookie-banner.popup.full-styling > .disclaimer-text {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 0 16px !important;
   }
   section.gdpr-cookie-banner .button-group.sqs-cookie-banner-v2-cta-container {
     display: flex !important;
@@ -45,7 +58,12 @@
     align-items: stretch !important;
     gap: 8px !important;
     width: 100% !important;
+    max-width: none !important;
     min-width: 0 !important;
+    flex: 0 0 auto !important;
+    align-self: stretch !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   section.gdpr-cookie-banner .button-group.sqs-cookie-banner-v2-cta-container > button {
     box-sizing: border-box !important;

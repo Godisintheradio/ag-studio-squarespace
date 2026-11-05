@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.1)
+/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.2)
    Optional override loaded AFTER ag-journal-editorial-grid.css v2.12.
    Scope: Squarespace 7.1 Basic Grid archive only. No single-post changes.
    Remove this stylesheet to instantly restore approved one-column mobile layout.
@@ -169,5 +169,55 @@
 @media (max-width:359px), (min-width:768px) {
   .blog-list.blog-basic-grid .ag-editorial-card .ag-mobile-excerpt-toggle {
     display: none !important;
+  }
+}
+
+/* v1.2 — Keep expanded excerpt physically below the title and toggle.
+   Restore normal document flow even if native Squarespace positioning differs. */
+@media (min-width:360px) and (max-width:767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card > .blog-basic-grid--text {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text > .blog-meta-section {
+    order: 0 !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text > h1.blog-title {
+    order: 1 !important;
+    position: static !important;
+    transform: none !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text > .ag-mobile-excerpt-toggle {
+    order: 2 !important;
+    position: relative !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text > .blog-excerpt {
+    order: 3 !important;
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+    float: none !important;
+    flex: none !important;
+    align-self: stretch !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-basic-grid--text > .blog-more-link {
+    order: 4 !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card:not(.ag-mobile-excerpt-open)
+  .blog-basic-grid--text > .blog-excerpt {
+    display: none !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card.ag-mobile-excerpt-open
+  .blog-basic-grid--text > .blog-excerpt {
+    display: block !important;
+    margin-top: 6px !important;
+    padding: 10px 0 0 !important;
+    border-top: 1px solid var(--ag-eg-line) !important;
   }
 }

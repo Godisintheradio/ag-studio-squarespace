@@ -1,0 +1,110 @@
+/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.0)
+   Optional override loaded AFTER ag-journal-editorial-grid.css v2.12.
+   Scope: Squarespace 7.1 Basic Grid archive only. No single-post changes.
+   Remove this stylesheet to instantly restore approved one-column mobile layout.
+*/
+@media (min-width: 360px) and (max-width: 767px) {
+  /* Control native Basic Grid columns only inside the blog listing. */
+  .blog-list.blog-basic-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    align-items: stretch;
+  }
+  .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 100%;
+    margin: 0 !important;
+    padding: 10px !important;
+    border-radius: 14px;
+  }
+
+  /* Image first. Keep Squarespace's aspect ratio and image styles. */
+  .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card > div:first-child {
+    order: 0 !important;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card > div:first-child > a.image-wrapper {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card > .blog-article-spacer {
+    display: none !important;
+  }
+
+  /* Compact textual hierarchy after the cover. */
+  .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card > .blog-basic-grid--text {
+    order: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 0 auto !important;
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 12px 1px 2px !important;
+  }
+
+  /* Category and progressive number only: no tiny author/date clutter. */
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 0;
+    margin: 0 0 9px !important;
+    padding: 0 26px 8px 0 !important;
+    border-bottom: 1px solid var(--ag-eg-line);
+    font-size: 10px !important;
+    line-height: 1.35;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-author,
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-date,
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-meta-delimiter,
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-meta-secondary {
+    display: none !important;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .blog-categories {
+    font-size: 10px !important;
+    font-weight: 500;
+    letter-spacing: .01em;
+    text-transform: none;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-meta-section .ag-editorial-card__number {
+    top: 0;
+    right: 0;
+    font-size: 12px !important;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+
+  .blog-list.blog-basic-grid .ag-editorial-card h1.blog-title {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: clamp(14px, 3.65vw, 17px) !important;
+    font-weight: 600;
+    line-height: 1.25 !important;
+    letter-spacing: -.025em;
+    text-wrap: pretty;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card h1.blog-title a {
+    font: inherit;
+  }
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-excerpt,
+  .blog-list.blog-basic-grid .ag-editorial-card .blog-more-link {
+    display: none !important;
+  }
+}
+
+/* A full-width card is more legible on especially narrow handsets.
+   The approved v2.12 mobile styling remains active under 360px. */

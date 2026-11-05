@@ -29,6 +29,50 @@
   white-space: nowrap;
 }
 
+
+/* Desktop: 530px banner with balanced, single-row actions.
+   Mobile rules below retain the tested full-width vertical buttons. */
+@media screen and (min-width: 641px) {
+  section.gdpr-cookie-banner.popup.full-styling {
+    box-sizing: border-box !important;
+    width: 530px !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+  section.gdpr-cookie-banner .button-group.sqs-cookie-banner-v2-cta-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  section.gdpr-cookie-banner .button-group.sqs-cookie-banner-v2-cta-container > button {
+    box-sizing: border-box !important;
+    position: static !important;
+    display: flex !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 11px 9px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+  section.gdpr-cookie-banner .button-group.sqs-cookie-banner-v2-cta-container > button.manage {
+    flex-grow: 1.45 !important;
+  }
+  section.gdpr-cookie-banner .button-group.sqs-cookie-banner-v2-cta-container > button span {
+    overflow-wrap: normal;
+    white-space: normal !important;
+  }
+}
+
 @media screen and (max-width: 640px) {
   /* Intro banner: responsive, centred within mobile viewport */
   section.gdpr-cookie-banner.popup.full-styling {

@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.3)
+/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.4)
    Optional override loaded AFTER ag-journal-editorial-grid.css v2.12.
    Scope: Squarespace 7.1 Basic Grid archive only. No single-post changes.
    Remove this stylesheet to instantly restore approved one-column mobile layout.
@@ -237,5 +237,22 @@
   }
   .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card > .blog-basic-grid--text {
     flex: 0 0 auto !important;
+  }
+}
+
+/* v1.4 — Two independent vertical tracks with JS-calculated grid spans.
+   Preserve row-wise DOM order and allow each column to pack independently. */
+@media (min-width:360px) and (max-width:767px) {
+  .blog-list.blog-basic-grid {
+    grid-template-rows: none !important;
+    grid-auto-rows: 1px !important;
+    grid-auto-flow: row !important;
+    column-gap: 12px !important;
+    row-gap: 8px !important;
+    align-items: start !important;
+  }
+  .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card {
+    align-self: start !important;
+    height: auto !important;
   }
 }

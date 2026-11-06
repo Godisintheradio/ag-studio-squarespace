@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.4)
+/* AG STUDIO — Journal Editorial Grid / Mobile Two Columns (EXPERIMENT v1.5)
    Optional override loaded AFTER ag-journal-editorial-grid.css v2.12.
    Scope: Squarespace 7.1 Basic Grid archive only. No single-post changes.
    Remove this stylesheet to instantly restore approved one-column mobile layout.
@@ -254,5 +254,19 @@
   .blog-list.blog-basic-grid > article.blog-item.ag-editorial-card {
     align-self: start !important;
     height: auto !important;
+  }
+}
+
+/* v1.5 — Consistent title area on two-column mobile cards.
+   JavaScript reduces only long titles to fit; complete titles remain visible. */
+@media (min-width:360px) and (max-width:767px) {
+  .blog-list.blog-basic-grid .ag-editorial-card
+  .blog-basic-grid--text > h1.blog-title {
+    box-sizing: border-box !important;
+    min-height: 96px !important;
+    height: auto !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    overflow: visible !important;
   }
 }

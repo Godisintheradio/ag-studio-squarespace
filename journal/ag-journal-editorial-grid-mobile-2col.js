@@ -1,4 +1,4 @@
-/* AG STUDIO — Journal Mobile 2 Columns / Excerpts + masonry v1.4
+/* AG STUDIO — Journal Mobile 2 Columns / Excerpts + masonry v1.5
    Uses explicit grid spans to pack the two independent mobile columns.
    Does not change the DOM order, card images or the desktop layout.
 */
@@ -40,6 +40,27 @@
     });
   }
 
+  // Fit long titles to the same reading area; never truncate content.
+  // If a title cannot fit at 13px, its box grows naturally.
+  function fitTitles(list) {
+    getCards(list).forEach(card => {
+      const title = card.querySelector(".blog-basic-grid--text > h1.blog-title");
+      if (!title) return;
+      if (!MOBILE.matches) {
+        if (title.style.fontSize) title.style.removeProperty("font-size");
+        return;
+      }
+      const steps = [16, 15.5, 15, 14.5, 14, 13.5, 13];
+      for (const size of steps) {
+        const value = size + "px";
+        if (title.style.fontSize !== value) {
+          title.style.setProperty("font-size", value, "important");
+        }
+        if (title.scrollHeight <= 97) break;
+      }
+    });
+  }
+
   function layout(list) {
     const cards = getCards(list);
     if (!MOBILE.matches) {
@@ -67,6 +88,7 @@
   function refresh() {
     document.querySelectorAll(LIST).forEach(list => {
       enhance(list);
+      fitTitles(list);
       layout(list);
     });
   }

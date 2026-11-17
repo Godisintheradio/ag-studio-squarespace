@@ -5,9 +5,11 @@
   if (!current || !current.parentNode) return;
   const sourceUrl = "https://www.google.com/search?q=Antonio+Giardiello+Consulente+Aziendale+recensioni";
   const reviews = [
-    { name: "Pellegrino C.", text: "Un partner del quale certamente non ne faremo più a meno.", detail: "KERAPHO · Progetto web e collaborazione continuativa" },
+    { name: "Pellegrino C.", text: "Un partner del quale certamente non ne faremo più a meno.", detail: "KERAPHO.IT · Progetto ecommerce e collaborazione continuativa" },
     { name: "Studio Rosiello", text: "Strabiliante. Oltre l’aspettativa, mi ha davvero sorpreso nella creazione del brand. Complimenti.", detail: "Creazione del brand" },
-    { name: "Fantasy Fiori", text: "La professionalità, la precisione e l'accuratezza per il lavoro sono le caratteristiche prevalenti dell'attività di Antonio Giardiello.", detail: "Rinnovamento dell'immagine aziendale" }
+    { name: "Fantasy Fiori", text: "La professionalità, la precisione e l'accuratezza per il lavoro sono le caratteristiche prevalenti dell'attività di Antonio Giardiello.", detail: "Rinnovamento dell'immagine aziendale" },
+    { name: "Cerinat 2000", text: "Ho apprezzato di Antonio non solo la capacità di arrivare ad un risultato eccellente, ma il "percorso" con il quale mi ha condotto alle sue scelte grafiche.", detail: "Restyling Logo" },
+    { name: "Simone Saracino", text: "Antonio mi ha dimostrato di possedere competenze, disponibilità e professionalità nel suo campo. Consiglio vivamente la sua consulenza.", detail: "Recupero vettoriali di etichette" }
   ];
   const host = document.createElement("section");
   host.className = "ag-reviews";

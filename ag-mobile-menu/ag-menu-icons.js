@@ -23,7 +23,7 @@ sparkles:'<path d="m12 3 1.5 6.5L20 11l-6.5 1.5L12 19l-1.5-6.5L4 11l6.5-1.5zM19 
 const rules=[
 [/^(home|homepage|inizio)(\b|\s|$)/,'home'],
 [/assistenza|supporto tecnico/,'wrench'],
-[/riprese|montaggio|reel|videomaking/,'clapper'],
+[/^(riprese(?: e | & )montaggio(?: dei)? reel|riprese e montaggio reel)$/,'clapper'],
 [/consulenza|formazione|coaching/,'video'],
 [/sviluppo|personalizzat/,'code'],
 [/code shop|shop|negozio/,'bag'],
@@ -40,12 +40,23 @@ const rules=[
 [/servizi/,'layers']
 ];
 const svg=(key)=>{const span=document.createElement('span');span.className='ag-nav-icon';span.setAttribute('aria-hidden','true');span.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+icons[key]+'</svg>';return span};
+function labelOf(el){
+ // Squarespace folder triggers may contain nested menu content.
+ // Read only the actual link/button label, not text from its descendants.
+ const clone=el.cloneNode(true);
+ clone.querySelectorAll('.ag-nav-icon, svg, .header-nav-folder-content, .header-nav-folder, .header-menu-nav-folder, [data-folder]').forEach(n=>n.remove());
+ const dedicated=clone.querySelector('.header-nav-folder-title-text, .header-menu-nav-item-content');
+ const raw=dedicated?dedicated.textContent:clone.textContent;
+ return (raw||'').replace(/\\s+/g,' ').trim().toLocaleLowerCase('it-IT');
+}
 function decorate(el){
  if(el.dataset.agIconReady==='1')return;
- if(el.closest('.header-menu')&&!el.closest('#agmm'))return; // native menu remains a fallback
- const label=(el.textContent||'').trim().toLocaleLowerCase('it-IT');
+ if(el.closest('.header-menu')&&!el.closest('#agmm'))return;
+ const label=labelOf(el);
  const href=el.getAttribute('href')||'';
  const pathname=(()=>{try{return new URL(href,location.href).pathname.replace(/[/]+$/,'').toLowerCase()}catch{return ''}})();
+ // The clapperboard belongs only to its exact page or exact label;
+ // never infer it from parent/folder descendants or the active page URL.
  const key=pathname==='/servizi/riprese-e-montaggio-reel'?'clapper':rules.find(([pattern])=>pattern.test(label))?.[1];
  if(!key)return;
  el.dataset.agIconReady='1';el.classList.add('ag-icon-label');el.prepend(svg(key));

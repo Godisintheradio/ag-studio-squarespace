@@ -47,7 +47,7 @@ function labelOf(el){
  clone.querySelectorAll('.ag-nav-icon, svg, .header-nav-folder-content, .header-nav-folder, .header-menu-nav-folder, [data-folder]').forEach(n=>n.remove());
  const dedicated=clone.querySelector('.header-nav-folder-title-text, .header-menu-nav-item-content');
  const raw=dedicated?dedicated.textContent:clone.textContent;
- return (raw||'').replace(/\\s+/g,' ').trim().toLocaleLowerCase('it-IT');
+ return (raw||'').replace(/\s+/g,' ').trim().toLocaleLowerCase('it-IT');
 }
 function decorate(el){
  if(el.dataset.agIconReady==='1')return;

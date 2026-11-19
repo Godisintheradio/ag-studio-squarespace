@@ -43,7 +43,7 @@ function decorate(el){
  if(el.closest('.header-menu')&&!el.closest('#agmm'))return; // native menu remains a fallback
  const label=(el.textContent||'').trim().toLocaleLowerCase('it-IT');
  const href=el.getAttribute('href')||'';
- const pathname=(()=>{try{return new URL(href,location.href).pathname.replace(/\\/$/,'').toLowerCase()}catch{return ''}})();
+ const pathname=(()=>{try{return new URL(href,location.href).pathname.replace(/[/]+$/,'').toLowerCase()}catch{return ''}})();
  const key=pathname==='/servizi/riprese-e-montaggio-reel'?'clapper':rules.find(([pattern])=>pattern.test(label))?.[1];
  if(!key)return;
  el.dataset.agIconReady='1';el.classList.add('ag-icon-label');el.prepend(svg(key));

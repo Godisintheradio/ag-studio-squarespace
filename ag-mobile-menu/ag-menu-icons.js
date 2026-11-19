@@ -54,7 +54,7 @@ function decorate(el){
  if(el.closest('.header-menu')&&!el.closest('#agmm'))return;
  const label=labelOf(el);
  const href=el.getAttribute('href')||'';
- const pathname=(()=>{try{return new URL(href,location.href).pathname.replace(/[/]+$/,'').toLowerCase()}catch{return ''}})();
+ const pathname=(()=>{if(!href.trim())return '';try{return new URL(href,location.href).pathname.replace(/[/]+$/,'').toLowerCase()}catch{return ''}})();
  // The clapperboard belongs only to its exact page or exact label;
  // never infer it from parent/folder descendants or the active page URL.
  const key=pathname==='/servizi/riprese-e-montaggio-reel'?'clapper':rules.find(([pattern])=>pattern.test(label))?.[1];

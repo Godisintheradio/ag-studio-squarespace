@@ -5,6 +5,7 @@ if(window.__AG_NAV_ICONS__)return;window.__AG_NAV_ICONS__=true;
 const icons={
 home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
 wrench:'<path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2 2 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4L14 13l-3-3z"/>',
+clapper:'<path d="M4 11h16v9H4zM4 11V7l14-4 2 4-14 4M8 6l3 4M14 4l3 4"/><path d="m10 14 5 2.5-5 2.5z"/>',
 video:'<rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 10 5-3v10l-5-3"/>',
 code:'<path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-12-3 16"/>',
 bag:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/>',
@@ -21,6 +22,7 @@ sparkles:'<path d="m12 3 1.5 6.5L20 11l-6.5 1.5L12 19l-1.5-6.5L4 11l6.5-1.5zM19 
 const rules=[
 [/^(home|homepage|inizio)(\b|\s|$)/,'home'],
 [/assistenza|supporto tecnico/,'wrench'],
+[/riprese|montaggio|reel|videomaking/,'clapper'],
 [/consulenza|formazione|coaching/,'video'],
 [/sviluppo|personalizzat/,'code'],
 [/code shop|shop|negozio/,'bag'],
@@ -40,7 +42,9 @@ function decorate(el){
  if(el.dataset.agIconReady==='1')return;
  if(el.closest('.header-menu')&&!el.closest('#agmm'))return; // native menu remains a fallback
  const label=(el.textContent||'').trim().toLocaleLowerCase('it-IT');
- const key=rules.find(([pattern])=>pattern.test(label))?.[1];
+ const href=el.getAttribute('href')||'';
+ const pathname=(()=>{try{return new URL(href,location.href).pathname.replace(/\\/$/,'').toLowerCase()}catch{return ''}})();
+ const key=pathname==='/servizi/riprese-e-montaggio-reel'?'clapper':rules.find(([pattern])=>pattern.test(label))?.[1];
  if(!key)return;
  el.dataset.agIconReady='1';el.classList.add('ag-icon-label');el.prepend(svg(key));
 }
